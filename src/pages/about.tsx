@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import styles from '@styles/pages/about.module.sass'
 
 export default function About() {
@@ -10,8 +9,8 @@ export default function About() {
       </fieldset>
       <fieldset className={styles.fieldset}>
         <legend>Devs</legend>
-        <span>RynnLee - UI / Front-end</span>
-        <span>SketchPiece - Backend</span>
+        <span>RynnLee - Front-end</span>
+        <span>SketchPiece - Back-end</span>
       </fieldset>
     </div>
   )
