@@ -1,5 +1,14 @@
+:root
+  --var-accent1: #282a36
+  --var-accent2: #242631
+  --var-accent1-hover: #31333f
+  --var-accent2-hover: #40424e
+  --var-link: #bd91f3
+  --var-link-hover: #d498ff
+  --var-transition: 200ms
+  
 body
-  background: #282a36
+  background: var(--var-accent1)
   font-family: monospace
   color: #fff
   font-size: 15px
@@ -11,6 +20,37 @@ body
 a
   text-decoration: none
   color: #ffffff
-  transition: 200ms
+  transition: var(--var-transition)
   &:hover
-    color: #d498ff
+    color: var(--var-link-hover)
+
+fieldset
+  border: none
+  display: flex
+  flex-direction: column
+  right: 0px
+  margin: 0px 0px 15px 0px
+  position: relative
+  legend
+    display: flex
+    align-items: center
+    border-bottom: 1px #bd93f910 solid
+    background: var(--var-accent1)
+    padding: 0px 30px 6px 10px
+    width: max-content
+    &>*
+      margin: 0px 8px 0px 0px
+
+input
+  padding: 10px 15px
+  background: var(--var-accent2)
+  border: 1px solid transparent
+  border-radius: 10px
+  color: #ffffff
+  outline: none
+  transition: var(--var-transition)
+  &:focus
+    border-color: var(--var-link)
+    background: var(--var-accent1-hover)
+  &:hover
+    background: var(--var-accent1-hover)
