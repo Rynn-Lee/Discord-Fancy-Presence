@@ -8,13 +8,21 @@ import AppLoader from '@/components/AppLoader'
 export default function App({ Component, pageProps }: AppProps) {
   const storage = useStorage()
   const [settings, setSettings] = useState({
-    clientId: ""
+    clientId: "",
+    updateRate: 0
   })
 
   return (
     <AppLayout>
-      <AppLoader storage={storage} settings={settings} setSettings={setSettings}/>
-      <Component {...pageProps} storage={storage} settings={settings} setSettings={setSettings}/>
+      <AppLoader
+        setSettings={setSettings}
+        settings={settings}
+        storage={storage}/>
+      <Component
+        {...pageProps}
+        setSettings={setSettings}
+        settings={settings}
+        storage={storage}/>
     </AppLayout>
   )
 }
