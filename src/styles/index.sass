@@ -3,6 +3,8 @@
   --var-accent2: #242631
   --var-accent1-hover: #31333f
   --var-accent2-hover: #40424e
+  --var-button: #3d4052
+  --var-button-hover: #4e5064
   --var-link: #bd91f3
   --var-link-hover: #d498ff
   --var-transition: 200ms
@@ -67,3 +69,29 @@ hr
   width: 100%
   border: none
   border-bottom: 1px solid var(--var-link)
+
+button
+  transition: var(--var-transition)
+  padding: 5px 10px
+  background: var(--var-button)
+  color: #fff
+  border: none
+  border-radius: 5px
+  cursor: pointer
+  &:hover
+    background: var(--var-button-hover)
+    
+    
+::-webkit-scrollbar
+  width: 8px
+
+::-webkit-scrollbar-track
+  background: var(--var-button-hover)
+  border-radius: 10px
+
+::-webkit-scrollbar-thumb 
+  background: var(--var-accent1-hover)
+  border-radius: 10px
+
+::-webkit-scrollbar-thumb:hover 
+  background: var(--var-accent2-hover)
