@@ -1,32 +1,25 @@
 import type { AppProps } from 'next/app'
-import useStorage from '@/hooks/useStorage'
 import AppLayout from '@/layouts/AppLayout'
-import { useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import '@/styles/index.sass'
 import AppLoader from '@/components/AppLoader'
-import useProcess from '@/hooks/useProcess'
+import { SettingsType } from '@/lib/api/types'
+
+export const AppContext: any = createContext('AppContext')
 
 export default function App({ Component, pageProps }: AppProps) {
-  const storage = useStorage()
-  const process = useProcess()
-  const [settings, setSettings] = useState({
+  const [apps, setApps] = useState([])
+  const [settings, setSettings] = useState<SettingsType>({
     clientId: "",
     updateRate: 0
   })
 
   return (
-    <AppLayout>
-      <AppLoader
-        setSettings={setSettings}
-        settings={settings}
-        storage={storage}
-        process={process}/>
-      <Component
-        {...pageProps}
-        setSettings={setSettings}
-        settings={settings}
-        storage={storage}
-        process={process}/>
-    </AppLayout>
+    <AppContext.Provider value={{settings, setSettings, setApps, apps}}>
+      <AppLayout>
+        <AppLoader/>
+        <Component {...pageProps}/>
+      </AppLayout>
+    </AppContext.Provider>
   )
 }

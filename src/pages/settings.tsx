@@ -1,22 +1,26 @@
 import Icon from "@/assets/icons"
 import Input from "@/components/UI/Input"
+import { AppContext } from "./_app"
+import { useContext } from "react"
 
-export default function Settings({settings, setSettings}: any) {
+export default function Settings() {
+  const app: any = useContext(AppContext)
+
   return (
     <>
       <fieldset className="fieldset">
         <legend><Icon.Pen />Client ID</legend>
           <Input
-            onChange={(e)=>setSettings({...settings, clientId: e.target.value})}
-            value={settings?.clientId}
+            onChange={(e)=>app.setSettings({...app.settings, clientId: e.target.value})}
+            value={app?.settings.clientId}
             fancy={{hide: true, text: "Custom Client ID"}}
             type="number"/>
       </fieldset>
       <fieldset className="fieldset">
         <legend><Icon.Pen />Update Rate</legend>
           <Input
-            onChange={(e)=>setSettings({...settings, updateRate: e.target.value})}
-            value={settings?.updateRate}
+            onChange={(e)=>app.setSettings({...app.settings, updateRate: e.target.value})}
+            value={app?.settings.updateRate}
             type="number"/>
       </fieldset>
     </>

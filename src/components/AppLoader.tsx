@@ -1,21 +1,30 @@
-import { memo, useEffect, useState } from "react"
+import { service } from "@/services"
+import { memo, useContext, useEffect, useState } from "react"
+import { AppContext } from "../pages/_app"
 
-const AppLoader = memo(function AppLoader({storage, settings, setSettings}: any){
+const AppLoader = memo(function AppLoader(){
+  const app: any = useContext(AppContext)
+
   const [firstLoad, setFirstLoad] = useState(true)
   useEffect(()=>{
-    setSettings(storage.get('settings', {
+    app.setSettings(service.storage.get('settings', {
       clientId: '1118418570855067688',
-      updateRate: 60
+      updateRate: 60,
     }))
+    app.setApps(service.storage.get('apps', ["Idle"]))
     setFirstLoad(false)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(()=>{
-    !firstLoad && storage.set('settings', settings)
+    !firstLoad && service.storage.set('settings', app.settings)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings])
+  }, [app.settings])
 
+  useEffect(()=>{
+    !firstLoad && service.storage.set('apps', app.apps)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [app.apps])
   
   return(null)
 })

@@ -1,28 +1,26 @@
-import api from '@/lib/api'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from '@styles/pages/bind.module.sass'
-import Icon from '@/assets/icons'
 import Input from '@/components/UI/Input'
+import { service } from '@/services'
+import { AppContext } from "./_app"
 
-export default function Bind({ storage, process }: any) {
+export default function Bind() {
   const [processes, setProcesses] = useState<any>([])
   const [search, setSearch] = useState<any>('')
-  const [apps, setApps] = useState([])
+  const app: any = useContext(AppContext)
+
   const handleGetProcesses = async () => {
-    const processes = await process.getList()
-    console.log(processes)
+    const processes = await service.task.getList()
     setProcesses(processes)
   }
   useEffect(() => {
     handleGetProcesses()
-    process.setApps(storage.get('registred', []))
   }, [])
 
   const addProcess = (name: string) => {
-    const existing = storage.get('registred', [])
-    if (!existing.includes(name)) {
-      storage.add('registred', name)
-      process.add(name)
+    if (!app.apps.includes(name)) {
+      service.storage.add('apps', name)
+      app.setApps([...app.apps, name])
     }
   }
 
@@ -43,14 +41,12 @@ export default function Bind({ storage, process }: any) {
       <div className={styles.processes}>
         {processes.map((item: any) =>
           item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 &&
-          !process.apps.includes(item.name) ? (
+          !app?.apps?.includes(item.name) ? (
             <div key={item.id} className={styles.process}>
               <button onClick={() => addProcess(item.name)}>+</button>
               <span>{item.name}</span>
             </div>
-          ) : (
-            <></>
-          )
+          ) : (<></>)
         )}
       </div>
     </fieldset>
