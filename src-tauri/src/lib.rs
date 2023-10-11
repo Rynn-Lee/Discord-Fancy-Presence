@@ -28,12 +28,13 @@ pub fn get_system_processes() -> Vec<AppProcess> {
             }
         })
         .collect();
-    let debug_processes: Vec<&AppProcess> = processes
-        .iter()
-        .filter(|process| process.name == "Arc")
-        .collect();
+    // let debug_processes: Vec<&AppProcess> = processes
+    //     .iter()
+    //     .filter(|process| process.name == "Arc")
+    //     .collect();
+    let p_length = processes.len();
 
-    println!("{debug_processes:#?}");
+    println!("processes: {p_length}");
 
     processes
 }

@@ -1,3 +1,4 @@
+mod windows;
 use std::process::Command;
 
 const OSA_LIST_FOREGROUND_PROCESSES_SCRIPT: &str =
@@ -22,6 +23,7 @@ fn get_macos_foreground_process_ids() -> Vec<String> {
 
 pub fn get_os_foreground_process_names() -> Vec<String> {
     if cfg!(target_os = "windows") {
+        windows::get_windows_foreground_processes();
         vec![]
     } else if cfg!(target_os = "macos") {
         get_macos_foreground_process_ids();
