@@ -2,4 +2,5 @@
   "rust-analyzer.linkedProjects": [
     "src-tauri/Cargo.toml",
   ],
+  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"]
 }
