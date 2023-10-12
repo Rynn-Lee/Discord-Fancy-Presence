@@ -20,6 +20,15 @@ export default function Bind() {
   const addProcess = (name: string) => {
     if (!app.apps.includes(name)) {
       service.storage.add('apps', name)
+      service.storage.set(name, {
+        clientId: "",
+        details: "Details",
+        state: "State",
+        largeImageKey: "Large Image URL",
+        largeImageText: "Large Image Text",
+        smallImageKey: "Small Image URL",
+        smallImageText: "Small Image Text",
+      })
       app.setApps([...app.apps, name])
     }
   }
@@ -34,7 +43,7 @@ export default function Bind() {
         <Input
           value={search}
           onChange={e => setSearch(e.target.value)}
-          fancy={{ text: 'Search' }}
+          fancy={{ text: 'Search', placeholder: true }}
         />
       </div>
       <hr />

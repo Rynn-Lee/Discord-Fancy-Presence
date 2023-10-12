@@ -1,37 +1,64 @@
 import { useContext, useEffect, useState } from "react"
 import styles from '@styles/pages/index.module.sass'
-import Icon from "@/assets/icons"
 import { service } from "@/services"
 import { AppContext } from "./_app"
+import Select from "@/components/pages/index/Select"
+import AppInfo from "@/components/pages/index/AppInfo"
+import Preview from "@/components/pages/index/Preview"
 
 export default function Home() {
   const [selected, setSelected] = useState<any>("Idle")
+  const [appInfo, setAppInfo] = useState<any>({})
+  const [appInfoCopy, setAppInfoCopy] = useState<any>({})
   const app: any = useContext(AppContext)
   
-  const refresh = () => app.setApps(service.storage.get('apps', ["Idle"]))
+  const refresh = () => app.setApps(service.storage.get('apps'))
 
-  const remove = (name: string) => {
-    if(name == "Idle"){return}
-    setSelected("Idle")
-    app.setApps(service.storage.remove('apps', name))
+  useEffect(()=>{
+    const info = service.storage.get(selected)
+    setAppInfo(info)
+    setAppInfoCopy(JSON.stringify(info))
+    refresh()
+  }, [])
+
+  const selectApp = (app: string) => {
+    setSelected(app)
+    const info = service.storage.get(app)
+    setAppInfo(info)
+    setAppInfoCopy(JSON.stringify(info))
   }
 
-  useEffect(()=>refresh(), [])
+  const saveApp = () => {
+    service.storage.set(selected, appInfo)
+    setAppInfoCopy(JSON.stringify(appInfo))
+  }
+
+  const removeApp = (name: string) => {
+    if(name == "Idle"){return}
+    app.setApps(service.storage.remove('apps', name))
+    service.storage.removeWhole(name)
+    selectApp("Idle")
+  }
 
   if(!app.settings.clientId){return(<>You need to specify Cliend ID first! Go to &apos;Settings&apos; tab</>)}
   return (
     <>
-      <div className={styles.selectApp}>
-        <select defaultValue={"Idle"} onChange={(e)=>setSelected(e.target.value)}>
-          {app?.apps?.map((item: string) => <option key={item} value={item}>{item}</option>)}
-        </select>
-        <button onClick={()=>remove(selected)}><Icon.Remove/></button>
-      </div>
+      <Select 
+        styles={styles}
+        app={app}
+        appInfo={appInfo}
+        appInfoCopy={appInfoCopy}
+        saveApp={saveApp}
+        removeApp={removeApp}
+        selectApp={selectApp}
+        selected={selected}/>
       <hr/>
       <div className={styles.index}>
-        <div>
-          aboba
-        </div>
+        <AppInfo
+          styles={styles}
+          appInfo={appInfo}
+          setAppInfo={setAppInfo}/>
+        <Preview/>
       </div>
     </>
   )

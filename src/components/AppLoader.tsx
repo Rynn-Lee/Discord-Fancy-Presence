@@ -12,6 +12,15 @@ const AppLoader = memo(function AppLoader(){
       updateRate: 60,
     }))
     app.setApps(service.storage.get('apps', ["Idle"]))
+    service.storage.get("Idle", {
+      clientId: "",
+      details: "Details",
+      state: "State",
+      largeImageKey: "Large Image URL",
+      largeImageText: "Large Image Text",
+      smallImageKey: "Small Image URL",
+      smallImageText: "Small Image Text",
+    })
     setFirstLoad(false)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

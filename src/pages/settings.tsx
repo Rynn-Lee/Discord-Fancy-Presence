@@ -17,7 +17,7 @@ export default function Settings() {
             type="number"/>
       </fieldset>
       <fieldset className="fieldset">
-        <legend><Icon.Pen />Update Rate</legend>
+        <legend><Icon.Pen />Update Rate (off if not specified)</legend>
           <Input
             onChange={(e)=>app.setSettings({...app.settings, updateRate: e.target.value})}
             value={app?.settings.updateRate}

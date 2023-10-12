@@ -11,6 +11,8 @@ interface DataFancyComponentProps {
   datafancy: {
     text?: string
     hide?: boolean
+    placeholder?: boolean
+    position?: string
   };
   value?: string | any
 }
@@ -19,7 +21,7 @@ const Label = styled.label<DataFancyComponentProps>`
   position: absolute;
   font-size: 13px;
   display: block;
-  text-align: center;
+  text-align: ${(props) => (props?.datafancy?.position ? props.datafancy.position : "center")};
   top: 0px;
   left: 0px;
   width: 100%;
@@ -27,6 +29,7 @@ const Label = styled.label<DataFancyComponentProps>`
   white-space: nowrap;
   opacity: 1;
   padding: 10px 0px;
+  overflow: hidden;
   pointer-events: none;
   transition: var(--var-transition);
   color: #ffffff90;
@@ -84,7 +87,14 @@ const Input:React.FunctionComponent<inputProps> = ({fancy, ...inputProps}) => {
           htmlFor={inputProps.id}
           className='label'
           value={inputProps.value}
-          datafancy={fancy}>{fancy.hide ? fancy.text : `${fancy.text}${inputProps.value ? ':' : ''} ${inputProps.value}`}</Label> : <></>}
+          datafancy={fancy}>{
+          fancy.hide
+            ? fancy.text
+            : fancy.placeholder
+              ? `${fancy.text}: ${inputProps.value ? inputProps.value : "Nothing..."}`
+              : `${inputProps.value ? inputProps.value : "Nothing..."}`}
+            </Label> 
+          : <></>}
     </InputWrapper>
   )
 }

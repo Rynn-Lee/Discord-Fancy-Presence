@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [apps, setApps] = useState([])
   const [settings, setSettings] = useState<SettingsType>({
     clientId: "",
-    updateRate: 0
+    updateRate: 60
   })
 
   return (
