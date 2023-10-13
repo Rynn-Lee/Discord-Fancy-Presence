@@ -61,6 +61,10 @@
         "title": "Fancy DRPC",
         "width": 900
       }
-    ]
+    ],
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    }
   }
 }

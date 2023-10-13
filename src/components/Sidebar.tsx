@@ -9,8 +9,8 @@ export default function Sidebar(){
   return(
     <div className={styles.sidebar}>
       <div className={styles.tab}>
-        <Link href="/" className={router.pathname == "/" ? styles.active : ""}><Icon.Display />Display settings</Link>
-        <Link href="bind" className={router.pathname == "/bind" ? styles.active : ""}><Icon.App />Bind app</Link>
+        <Link href="/" className={router.pathname == "/" ? styles.active : ""}><Icon.Display />Display Settings</Link>
+        <Link href="bind" className={router.pathname == "/bind" ? styles.active : ""}><Icon.App />Bind Apps</Link>
         <Link href="faq" className={router.pathname == "/faq" ? styles.active : ""}><Icon.FAQ />FAQ</Link>
       </div>
       <div className={styles.tab}>

@@ -14,5 +14,64 @@
 
 .appInfo
   margin: 0px 15px 0px 0px
-  &>*
-    margin-bottom: 5px
+  fieldset
+    padding: 0px
+    margin: 0px
+    &>*
+      margin-bottom: 5px
+
+.discordRPC
+  display: flex
+  flex-direction: row
+  align-items: center
+  padding: 0px
+  margin: 0px
+  height: 115px
+  legend
+    margin: 0px 0px 10px 0px
+  .details
+    display: flex
+    flex-direction: column
+    margin-left: 14px
+    .appName
+      font-size: 15px
+    span
+      font-size: 13px
+      max-width: 180px
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+
+.photos
+  img
+    border-radius: 10px
+
+.preview
+  display: flex
+  flex-direction: column
+  button
+    display: flex
+    justify-content: center
+    align-items: center
+    &>*
+      padding: 0px 3px
+
+
+.warnings
+  .warn
+    display: flex
+    color: #df9846
+    border-top: 1px solid var(--var-button)
+    margin-top: 5px
+    padding-top: 5px
+    &>*
+      margin: 0px 4px
+
+.smallImage
+  position: absolute
+  border-radius: 50px !important
+  z-index: 99
+  width: 30px
+  height: 30px
+  bottom: -5px
+  left: 45px

@@ -7,6 +7,9 @@ const nextConfig = {
       ssr: true
     }
   },
+  images: {
+    unoptimized: true
+  }
 }
 
 module.exports = nextConfig

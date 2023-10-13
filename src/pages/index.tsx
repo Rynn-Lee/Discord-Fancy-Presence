@@ -5,9 +5,14 @@ import { AppContext } from "./_app"
 import Select from "@/components/pages/index/Select"
 import AppInfo from "@/components/pages/index/AppInfo"
 import Preview from "@/components/pages/index/Preview"
+import { getMeta } from "@/utils/getMeta"
 
 export default function Home() {
   const [selected, setSelected] = useState<any>("Idle")
+  const [photoInfo, setPhotoInfo] = useState<any>({
+    large: true,
+    small: true
+  })
   const [appInfo, setAppInfo] = useState<any>({})
   const [appInfoCopy, setAppInfoCopy] = useState<any>({})
   const app: any = useContext(AppContext)
@@ -20,6 +25,12 @@ export default function Home() {
     setAppInfoCopy(JSON.stringify(info))
     refresh()
   }, [])
+  
+  useEffect(()=>{
+    if(!appInfo.largeImageKey){return}
+    getMeta(appInfo.largeImageKey).then((res: boolean)=>setPhotoInfo({...photoInfo, large: res}))
+    getMeta(appInfo.smallImageKey).then((res: boolean)=>setPhotoInfo({...photoInfo, small: res}))
+  }, [appInfo.largeImageKey, appInfo.smallImageKey])
 
   const selectApp = (app: string) => {
     setSelected(app)
@@ -46,9 +57,6 @@ export default function Home() {
       <Select 
         styles={styles}
         app={app}
-        appInfo={appInfo}
-        appInfoCopy={appInfoCopy}
-        saveApp={saveApp}
         removeApp={removeApp}
         selectApp={selectApp}
         selected={selected}/>
@@ -58,7 +66,12 @@ export default function Home() {
           styles={styles}
           appInfo={appInfo}
           setAppInfo={setAppInfo}/>
-        <Preview/>
+        <Preview
+          styles={styles}
+          appInfo={appInfo}
+          appInfoCopy={appInfoCopy}
+          saveApp={saveApp}
+          photoInfo={photoInfo}/>
       </div>
     </>
   )

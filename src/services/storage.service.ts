@@ -1,3 +1,5 @@
+import CryptoJs from 'crypto-js'
+
 export const storageService = {
   set(key: string, value: any){
     localStorage.setItem(key, encrypt(value))
@@ -37,5 +39,9 @@ export const storageService = {
 
 }
 
-const encrypt = (data: any) => btoa(JSON.stringify(data))
-const decrypt = (data: any) => JSON.parse(atob(data))
+const encrypt = (data: any) =>CryptoJs.AES.encrypt(JSON.stringify(data), 'SomeWhatSecretKey').toString()
+const decrypt = (data: any) => {
+  const bytes = CryptoJs.AES.decrypt(data, 'SomeWhatSecretKey')
+  const decrypred = JSON.parse(bytes.toString(CryptoJs.enc.Utf8))
+  return decrypred
+}

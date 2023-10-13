@@ -24,10 +24,12 @@ export default function Bind() {
         clientId: "",
         details: "Details",
         state: "State",
-        largeImageKey: "Large Image URL",
-        largeImageText: "Large Image Text",
-        smallImageKey: "Small Image URL",
-        smallImageText: "Small Image Text",
+        startTimestamp: false,
+        type: "playing",
+        largeImageKey: "",
+        largeImageText: "",
+        smallImageKey: "",
+        smallImageText: "",
       })
       app.setApps([...app.apps, name])
     }

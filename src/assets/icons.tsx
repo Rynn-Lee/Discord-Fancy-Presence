@@ -237,15 +237,29 @@ const Remove = (props: IconProps) => {
 const Check = (props: IconProps) => {
   return(
     <svg width="20px" height="20px" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-      <g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/> </g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
+      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
+      <g id="SVGRepo_iconCarrier"> <path d="M8.5 12.5L10.5 14.5L15.5 9.5" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/> <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/> </g>
     </svg>
   )
 }
 
+const ExclamationMark = (props: IconProps) => {
+  return(
+    <svg width="20px" height="20px" {...props} viewBox="0 0 24 24" fill="#ffa41c" xmlns="http://www.w3.org/2000/svg">
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
+      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
+      <g id="SVGRepo_iconCarrier">
+        <path d="M1.225 21.225A1.678 1.678 0 0 0 2.707 22H22.28a1.68 1.68 0 0 0 1.484-.775 1.608 1.608 0 0 0 .003-1.656L13.995 1.827a1.745 1.745 0 0 0-2.969 0l-9.8 17.742a1.603 1.603 0 0 0 0 1.656zm.859-1.143l9.82-17.773A.71.71 0 0 1 12.508 2a.73.73 0 0 1 .629.342l9.751 17.708a.626.626 0 0 1 .017.662.725.725 0 0 1-.626.288H2.708a.723.723 0 0 1-.623-.286.605.605 0 0 1-.001-.632zM13 15h-1V8h1zm-1.5 2.5a1 1 0 1 1 1 1 1.002 1.002 0 0 1-1-1z"/>
+        <path fill="none" d="M0 0h24v24H0z"/>
+      </g>
+    </svg>
+  )
+}
+
+
 const Icon = {
-  App,  Display,  Info,  Settings,  FAQ,  Pen,  Eye, Remove, Check
+  App,  Display,  Info,  Settings,  FAQ,  Pen,  Eye, Remove, Check, ExclamationMark
 }
 
 export default Icon
