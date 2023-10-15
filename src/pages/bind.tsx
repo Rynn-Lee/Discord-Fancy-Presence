@@ -3,10 +3,12 @@ import styles from '@styles/pages/bind.module.sass'
 import Input from '@/components/UI/Input'
 import { service } from '@/services'
 import { AppContext } from "./_app"
+import Icon from '@/assets/icons'
 
 export default function Bind() {
   const [processes, setProcesses] = useState<any>([])
   const [search, setSearch] = useState<any>('')
+  const [showAll, setShowAll] = useState(true)
   const app: any = useContext(AppContext)
 
   const handleGetProcesses = async () => {
@@ -25,7 +27,6 @@ export default function Bind() {
         details: "Details",
         state: "State",
         startTimestamp: false,
-        type: "playing",
         largeImageKey: "",
         largeImageText: "",
         smallImageKey: "",
@@ -37,11 +38,9 @@ export default function Bind() {
 
   return (
     <fieldset className={styles.bind}>
-      <legend>Bind Apps</legend>
       <div className={styles.top}>
-        <button onClick={handleGetProcesses} className={styles.processButton}>
-          Refresh
-        </button>
+        <button onClick={handleGetProcesses} className={styles.processButton}><Icon.Refresh /></button>
+        <button onClick={()=>setShowAll(!showAll)} className={styles.processButton}>{showAll ? <Icon.Server/> : <Icon.User/>}</button>
         <Input
           value={search}
           onChange={e => setSearch(e.target.value)}

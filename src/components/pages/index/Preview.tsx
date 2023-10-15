@@ -1,7 +1,22 @@
 import Icon from "@/assets/icons";
 import Image from "next/image";
+import { invoke } from '@tauri-apps/api/tauri'
 
 export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInfo}: any){
+  const sendrpc = async() => {
+    await invoke('discordrpc',
+    {
+      details: appInfo.details,
+      state: appInfo.state,
+      largeImage: appInfo.largeImageKey,
+      largeText: appInfo.largeImageText,
+      smallImage: appInfo.smallImageKey,
+      smallText: appInfo.smallImageText,
+      startTimestamp: true
+    }
+    )
+  }
+
   return(
     <div className={styles.preview}>
       <fieldset className={styles.discordRPC}>
@@ -17,6 +32,7 @@ export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInf
           <span>{appInfo.details}</span>
           <span>{appInfo.state}</span>
           <span>01:50:45 elapsed</span>
+          <button onClick={sendrpc}><Icon.Check/><span>Send rpc</span></button> 
         </div>
       </fieldset>
       {JSON.stringify(appInfo) != appInfoCopy 

@@ -17,7 +17,6 @@ const AppLoader = memo(function AppLoader(){
       details: "Details",
       state: "State",
       startTimestamp: false,
-      type: "Playing",
       largeImageKey: "",
       largeImageText: "",
       smallImageKey: "",

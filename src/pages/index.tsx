@@ -6,6 +6,7 @@ import Select from "@/components/pages/index/Select"
 import AppInfo from "@/components/pages/index/AppInfo"
 import Preview from "@/components/pages/index/Preview"
 import { getMeta } from "@/utils/getMeta"
+import Tabs from "@/layouts/Tabs"
 
 export default function Home() {
   const [selected, setSelected] = useState<any>("Idle")
