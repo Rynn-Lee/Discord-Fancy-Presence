@@ -4,17 +4,22 @@ import { invoke } from '@tauri-apps/api/tauri'
 
 export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInfo}: any){
   const sendrpc = async() => {
-    await invoke('discordrpc',
+    await invoke('setactivity',
     {
+      clientId: !appInfo.clientId ? "1118418570855067688" : appInfo.clientId,
       details: appInfo.details,
       state: appInfo.state,
       largeImage: appInfo.largeImageKey,
       largeText: appInfo.largeImageText,
       smallImage: appInfo.smallImageKey,
       smallText: appInfo.smallImageText,
-      startTimestamp: true
+      startTimestamp: appInfo.startTimestamp
     }
     )
+  }
+
+  const stoprpc = async() => {
+    await invoke('stoprpc')
   }
 
   return(
@@ -31,8 +36,7 @@ export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInf
           <span className={styles.appName}><b>Fancy DRPC</b></span>
           <span>{appInfo.details}</span>
           <span>{appInfo.state}</span>
-          <span>01:50:45 elapsed</span>
-          <button onClick={sendrpc}><Icon.Check/><span>Send rpc</span></button> 
+          {appInfo.startTimestamp ? <span>01:50:45 elapsed</span> : <></>}
         </div>
       </fieldset>
       {JSON.stringify(appInfo) != appInfoCopy 
@@ -44,6 +48,8 @@ export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInf
         {!photoInfo.large && appInfo.largeImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Large image must be square (1x1)!</span> : <></>}
         {!photoInfo.small && appInfo.smallImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Small image must be square (1x1)!</span> : <></>}
       </fieldset>
+      
+      <button onClick={sendrpc}><Icon.Check/><span>Send rpc</span></button> 
     </div>
   )
 }

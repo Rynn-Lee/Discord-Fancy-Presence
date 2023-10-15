@@ -4,18 +4,12 @@ export default function Other({appInfo, setAppInfo}: any){
   return(
     <>
       <fieldset>
-        <legend>Activity</legend>
-        <select defaultValue={appInfo.type}
-          onChange={(e)=>setAppInfo({...appInfo, type: e.target.value})}>
-          <option value="playing">Playing</option>
-          <option value="watching">Watching</option>
-        </select>
-
         <legend>Custom label for the selected app</legend>
         <Input 
           fancy={{text: "Custom Client ID", hide: true}}
           value={appInfo?.clientId}
           onChange={(e)=>setAppInfo({...appInfo, clientId: e.target.value})}/>
+        <span><input type="checkbox" onChange={(e)=>setAppInfo({...appInfo, startTimestamp: e.target.checked})} checked={appInfo.startTimestamp}/>Show timer</span>
       </fieldset>
     </>
   )
