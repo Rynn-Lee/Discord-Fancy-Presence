@@ -1,6 +1,7 @@
-use sysinfo::{PidExt, ProcessExt, System, SystemExt};
 mod utils;
 
+use sysinfo::{PidExt, ProcessExt, System, SystemExt};
+use utils::foreground_processes;
 #[derive(serde::Serialize, Debug)]
 pub struct AppProcess {
     id: u32,
@@ -14,7 +15,7 @@ pub fn get_system_processes() -> Vec<AppProcess> {
     let mut sys = System::new_all();
     sys.refresh_all();
 
-    let foreground_processes_names = utils::foreground_processes::get_os_foreground_process_names();
+    let foreground_processes_names = foreground_processes::get_os_foreground_process_names();
 
     let processes: Vec<AppProcess> = sys
         .processes()
