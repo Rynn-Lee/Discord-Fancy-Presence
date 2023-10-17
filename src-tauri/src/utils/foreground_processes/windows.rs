@@ -66,6 +66,6 @@ pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
 }
 
 #[cfg(not(windows))]
-pub fn get_windows_foreground_processes() -> Vec<String> {
+pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
     vec![]
 }
