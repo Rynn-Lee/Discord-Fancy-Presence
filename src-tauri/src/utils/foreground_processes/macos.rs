@@ -1,9 +1,10 @@
 use std::process::Command;
+use super::ForegroundProcess;
 
 const OSA_LIST_FOREGROUND_PROCESSES_SCRIPT: &str =
     "Application(\"System Events\").processes.whose({ backgroundOnly: false }).name()";
 
-pub fn get_macos_foreground_process_ids() -> Vec<String> {
+pub fn get_macos_foreground_process_ids() -> Vec<ForegroundProcess> {
     let output = Command::new("osascript")
         .arg("-l")
         .arg("JavaScript")

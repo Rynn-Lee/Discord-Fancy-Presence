@@ -1,7 +1,13 @@
 mod macos;
 mod windows;
 
-pub fn get_os_foreground_process_names() -> Vec<String> {
+#[derive(Debug)]
+pub struct ForegroundProcess {
+    pub process_id: u32,
+    pub title: String,
+}
+
+pub fn get_foreground_processes() -> Vec<ForegroundProcess> {
     if cfg!(target_os = "windows") {
         windows::get_windows_foreground_processes()
     } else if cfg!(target_os = "macos") {
