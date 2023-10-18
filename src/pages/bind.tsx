@@ -49,8 +49,12 @@ export default function Bind() {
       </div>
       <hr />
       <div className={styles.processes}>
-        {processes.map((item: any, index: number) => item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 && !app?.apps?.includes(item.name) && (
-            <div key={`${item.id}${item.name}`} className={`${styles.process} ${!showAll && !item.foreground ? styles.backgroundTask : ""}`}>
+        {processes.map((item: any) => 
+          item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 &&  //If satisfies search query
+          !app?.apps?.includes(item.name) &&  //If the app is already added
+          (showAll ? !item.foreground : item.foreground) && //If "ShowAll" is on
+          (
+            <div key={`${item.id}${item.name}`} className={styles.process}>
               <button onClick={() => addProcess(item.name)}>+</button>
               <span>{item.name}</span>
             </div>
