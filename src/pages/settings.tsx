@@ -9,11 +9,11 @@ export default function Settings() {
   return (
     <>
       <fieldset className="fieldset">
-        <legend><Icon.Pen />Default Client ID</legend>
+        <legend><Icon.Pen />Default Application ID</legend>
           <Input
             onChange={(e)=>app.setSettings({...app.settings, clientId: e.target.value})}
             value={app?.settings.clientId}
-            fancy={{hide: true, text: "Default Client ID"}}
+            fancy={{hide: true, text: "Default Application ID"}}
             type="number"/>
       </fieldset>
       <fieldset className="fieldset">

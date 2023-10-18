@@ -9,7 +9,7 @@ export default function About() {
       </fieldset>
       <fieldset className={styles.fieldset}>
         <legend>Devs</legend>
-        <span>RynnLee - SketchPiece</span>
+        <span><a href="https://github.com/rynn-lee" target='_blank'>RynnLee</a> - <a href="https://github.com/SketchPiece" target='_blank'>SketchPiece</a></span>
       </fieldset>
     </div>
   )

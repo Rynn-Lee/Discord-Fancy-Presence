@@ -12,7 +12,7 @@ export default function Other({appInfo, setAppInfo}: any){
 
         <legend>Custom label for the selected app</legend>
         <Input 
-          fancy={{text: "Custom Client ID", hide: true}}
+          fancy={{text: "Custom Application ID", hide: true}}
           value={appInfo?.clientId}
           onChange={(e)=>setAppInfo({...appInfo, clientId: e.target.value})}/>
       </fieldset>
