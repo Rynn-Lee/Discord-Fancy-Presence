@@ -1,4 +1,4 @@
-import Input from "@/components/UI/Input";
+import Input from "@/components/Custom/Input";
 import Tabs from "@/layouts/Tabs";
 import Texts from "./AppInfo/Texts";
 import Images from "./AppInfo/Images";

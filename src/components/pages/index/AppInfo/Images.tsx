@@ -1,4 +1,4 @@
-import Input from "@/components/UI/Input";
+import Input from "@/components/Custom/Input";
 
 export default function Images({appInfo, setAppInfo}: any){
   return(

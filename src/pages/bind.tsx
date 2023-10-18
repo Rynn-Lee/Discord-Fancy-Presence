@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styles from '@styles/pages/bind.module.sass'
-import Input from '@/components/UI/Input'
+import Input from '@/components/Custom/Input'
 import { service } from '@/services'
 import { AppContext } from "./_app"
 import Icon from '@/assets/icons'
@@ -8,7 +8,7 @@ import Icon from '@/assets/icons'
 export default function Bind() {
   const [processes, setProcesses] = useState<any>([])
   const [search, setSearch] = useState<any>('')
-  const [showAll, setShowAll] = useState(true)
+  const [showAll, setShowAll] = useState(false)
   const app: any = useContext(AppContext)
 
   const handleGetProcesses = async () => {
@@ -49,14 +49,12 @@ export default function Bind() {
       </div>
       <hr />
       <div className={styles.processes}>
-        {processes.map((item: any) =>
-          item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 &&
-          !app?.apps?.includes(item.name) ? (
-            <div key={item.id} className={styles.process}>
+        {processes.map((item: any, index: number) => item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 && !app?.apps?.includes(item.name) && (
+            <div key={`${item.id}${item.name}`} className={`${styles.process} ${!showAll && !item.foreground ? styles.backgroundTask : ""}`}>
               <button onClick={() => addProcess(item.name)}>+</button>
               <span>{item.name}</span>
             </div>
-          ) : (<></>)
+          )
         )}
       </div>
     </fieldset>

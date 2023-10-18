@@ -2,7 +2,7 @@ import Icon from "@/assets/icons";
 import Image from "next/image";
 import { invoke } from '@tauri-apps/api/tauri'
 
-export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInfo}: any){
+export default function Preview({styles, appInfo, appInfoCopy, saveApp, isPhotoSquare}: any){
   const sendrpc = async() => {
     await invoke('setactivity',
     {
@@ -18,17 +18,13 @@ export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInf
     )
   }
 
-  const stoprpc = async() => {
-    await invoke('stoprpc')
-  }
-
   return(
     <div className={styles.preview}>
       <fieldset className={styles.discordRPC}>
-        <legend>RPC preview</legend>
+        <legend className={styles.previewTitle}>RPC preview</legend>
         <div className={styles.photos}>
-          {appInfo.largeImageKey && photoInfo.large ? <Image src={appInfo.largeImageKey} width={70} height={70} alt="Img"/> : <></>}
-          {appInfo.largeImageKey && appInfo.smallImageKey && photoInfo.small 
+          {appInfo.largeImageKey && isPhotoSquare.large ? <Image src={appInfo.largeImageKey} width={70} height={70} alt="Img"/> : <></>}
+          {appInfo.largeImageKey && appInfo.smallImageKey && isPhotoSquare.small 
             ? <Image src={appInfo.smallImageKey} width={70} height={70} alt="Img" className={styles.smallImage}/> 
             : <></>}
         </div>
@@ -40,16 +36,14 @@ export default function Preview({styles, appInfo, appInfoCopy, saveApp, photoInf
         </div>
       </fieldset>
       {JSON.stringify(appInfo) != appInfoCopy 
-        ? <button onClick={saveApp}><Icon.Check/><span>Save Changes!</span></button> 
+        ? <button onClick={saveApp}><Icon.Check/><span>Save Changes</span></button> 
         : <></>}
       <fieldset className={styles.warnings}>
-        {!appInfo.largeImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Missing &quot;Large Image&quot; URL!</span> : <></>}
-        {!appInfo.smallImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Missing &quot;Small Image&quot; URL!</span> : <></>}
-        {!photoInfo.large && appInfo.largeImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Large image must be square (1x1)!</span> : <></>}
-        {!photoInfo.small && appInfo.smallImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Small image must be square (1x1)!</span> : <></>}
+        {appInfo.largeImageKey && !appInfo.largeImageText ? <span className={styles.warn}><Icon.ExclamationMark/> Missing &quot;Large Image&quot; Text!</span> : <></>}
+        {appInfo.smallImageKey && !appInfo.smallImageText ? <span className={styles.warn}><Icon.ExclamationMark/> Missing &quot;Small Image&quot; Text!</span> : <></>}
+        {!isPhotoSquare.large && appInfo.largeImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Large image must be square (1x1)!</span> : <></>}
+        {!isPhotoSquare.small && appInfo.smallImageKey ? <span className={styles.warn}><Icon.ExclamationMark/> Small image must be square (1x1)!</span> : <></>}
       </fieldset>
-      
-      <button onClick={sendrpc}><Icon.Check/><span>Send rpc</span></button> 
     </div>
   )
 }

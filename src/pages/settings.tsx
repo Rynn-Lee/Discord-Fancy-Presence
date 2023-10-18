@@ -1,5 +1,5 @@
 import Icon from "@/assets/icons"
-import Input from "@/components/UI/Input"
+import Input from "@/components/Custom/Input"
 import { AppContext } from "./_app"
 import { useContext } from "react"
 
@@ -9,11 +9,11 @@ export default function Settings() {
   return (
     <>
       <fieldset className="fieldset">
-        <legend><Icon.Pen />Client ID</legend>
+        <legend><Icon.Pen />Default Client ID</legend>
           <Input
             onChange={(e)=>app.setSettings({...app.settings, clientId: e.target.value})}
             value={app?.settings.clientId}
-            fancy={{hide: true, text: "Custom Client ID"}}
+            fancy={{hide: true, text: "Default Client ID"}}
             type="number"/>
       </fieldset>
       <fieldset className="fieldset">
