@@ -15,6 +15,13 @@ export default function Other({appInfo, setAppInfo}: any){
           fancy={{text: "Custom Application ID", hide: true}}
           value={appInfo?.clientId}
           onChange={(e)=>setAppInfo({...appInfo, clientId: e.target.value})}/>
+
+        <legend>Priority level</legend>
+        <Input 
+          fancy={{text: "Priority"}}
+          value={appInfo?.priority}
+          type="number"
+          onChange={(e)=>setAppInfo({...appInfo, priority: e.target.value})}/>
       </fieldset>
     </>
   )

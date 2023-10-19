@@ -26,6 +26,7 @@ export default function Bind() {
         clientId: "",
         details: "Details",
         state: "State",
+        priority: "2",
         startTimestamp: false,
         largeImageKey: "",
         largeImageText: "",

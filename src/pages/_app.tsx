@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import AppLayout from '@/layouts/AppLayout'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import '@/styles/index.sass'
 import AppLoader from '@/components/AppLoader'
 import { SettingsType } from '@/lib/api/types'

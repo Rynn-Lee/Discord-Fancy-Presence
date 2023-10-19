@@ -16,6 +16,7 @@ const AppLoader = memo(function AppLoader(){
       clientId: "",
       details: "Details",
       state: "State",
+      priority: "1",
       startTimestamp: false,
       largeImageKey: "",
       largeImageText: "",
