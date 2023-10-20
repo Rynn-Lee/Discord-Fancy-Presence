@@ -11,6 +11,7 @@ export default function Sidebar(){
       <div className={styles.tab}>
         <Link href="/" className={router.pathname == "/" ? styles.active : ""}><Icon.Display />Display Settings</Link>
         <Link href="bind" className={router.pathname == "/bind" ? styles.active : ""}><Icon.Controller />Bind Apps</Link>
+        <Link href="events" className={router.pathname == "/events" ? styles.active : ""}><Icon.Calendar />Events</Link>
         <Link href="faq" className={router.pathname == "/faq" ? styles.active : ""}><Icon.FAQ />FAQ</Link>
       </div>
       <div className={styles.tab}>

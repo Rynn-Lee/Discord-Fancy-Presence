@@ -1,17 +1,20 @@
-import Input from "@/components/Custom/Input";
 import Tabs from "@/layouts/Tabs";
-import Texts from "./AppInfo/Texts";
-import Images from "./AppInfo/Images";
-import Other from "./AppInfo/Other";
+import Texts from "./Texts";
+import Images from "./Images";
+import Other from "./Other";
+import Buttons from "./Buttons";
 
 export default function AppInfo({styles, appInfo, setAppInfo}: any){
   return(
     <div className={styles.appInfo}>
-      <Tabs titles={["Texts", "Images", "Other"]}>
+      <Tabs titles={["Texts", "Images", "Buttons", "Other"]}>
         <Texts
           appInfo={appInfo}
           setAppInfo={setAppInfo}/>
         <Images
+          appInfo={appInfo}
+          setAppInfo={setAppInfo}/>
+        <Buttons
           appInfo={appInfo}
           setAppInfo={setAppInfo}/>
         <Other

@@ -12,6 +12,11 @@ export default function FAQ(){
             <li>Visit <a href="https://discord.com/developers/applications" target="_blank" className="link">Discord Dev Portal</a> and register your own title</li>
           </ul>
         </div>
+        
+        <legend className={styles.legend}> • What "Events" do?</legend>
+          <div>
+            For example, you can set your birthday date. When the day comes, a special activity will be displayed over the others
+          </div>
       </fieldset>
     </>
   )

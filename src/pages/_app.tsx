@@ -1,23 +1,26 @@
+import { createContext, useState } from 'react'
 import type { AppProps } from 'next/app'
 import AppLayout from '@/layouts/AppLayout'
-import { createContext, useState } from 'react'
-import '@/styles/index.sass'
 import AppLoader from '@/components/AppLoader'
-import { SettingsType } from '@/lib/api/types'
+import useRecorder from '@/hooks/useRecorder'
+import '@/styles/index.sass'
 
 export const AppContext: any = createContext('AppContext')
 
 export default function App({ Component, pageProps }: AppProps) {
   const [apps, setApps] = useState([])
-  const [settings, setSettings] = useState<SettingsType>({
+  const [settings, setSettings] = useState({
     clientId: "",
-    updateRate: 60
+    updateRate: 60,
+    selected: "Idle"
   })
+
+  useRecorder({watch: apps, name: "apps"}, {watch: settings, name: "settings"})
 
   return (
     <AppContext.Provider value={{settings, setSettings, setApps, apps}}>
       <AppLayout>
-        <AppLoader/>
+        {!apps.length ? <AppLoader/> : <></>}
         <Component {...pageProps}/>
       </AppLayout>
     </AppContext.Provider>

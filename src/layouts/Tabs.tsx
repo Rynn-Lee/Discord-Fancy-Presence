@@ -14,7 +14,6 @@ export default function Tabs({children, titles}: any){
             onClick={()=>setTab(index)}>{title}</span>
         ))}
       </div>
-
       {children[tab]}
     </div>
   )
