@@ -1,8 +1,11 @@
 mod utils;
 use std::collections::HashMap;
 use sysinfo::{PidExt, ProcessExt, System, SystemExt};
+pub use utils::activity_manager;
 use utils::foreground_processes;
 use utils::foreground_processes::ForegroundProcess;
+// mod activity_manager;
+
 #[derive(serde::Serialize, Debug)]
 pub struct AppProcess {
     id: u32,
