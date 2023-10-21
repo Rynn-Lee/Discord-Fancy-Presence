@@ -1,4 +1,4 @@
-export const getMeta = async (url: string) => {
+export const checkImage = async (url: string) => {
   const img = new Image();
   img.src = url;
   await img.decode().catch((err)=>{return false});
