@@ -1,2 +1,2 @@
-pub mod discord_activity;
+pub mod activity_manager;
 pub mod foreground_processes;

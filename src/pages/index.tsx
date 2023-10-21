@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from 'react'
 import styles from '@styles/pages/index.module.sass'
-import { service } from "@/services"
-import { AppContext } from "./_app"
-import Select from "@/components/pages/index/Select"
-import AppInfo from "@/components/pages/index/AppInfo"
-import Preview from "@/components/pages/index/Preview"
-import { getMeta } from "@/utils/getMeta"
-import Tabs from "@/layouts/Tabs"
+import { service } from '@/services'
+import { AppContext } from './_app'
+import Select from '@/components/pages/index/Select'
+import AppInfo from '@/components/pages/index/AppInfo'
+import Preview from '@/components/pages/index/Preview'
+import { getMeta } from '@/utils/getMeta'
+import Tabs from '@/layouts/Tabs'
 
 export default function Home() {
-  const [selected, setSelected] = useState<any>("Idle")
+  const [selected, setSelected] = useState<any>('Idle')
   const [photoInfo, setPhotoInfo] = useState<any>({
     large: true,
     small: true
@@ -17,20 +17,26 @@ export default function Home() {
   const [appInfo, setAppInfo] = useState<any>({})
   const [appInfoCopy, setAppInfoCopy] = useState<any>({})
   const app: any = useContext(AppContext)
-  
+
   const refresh = () => app.setApps(service.storage.get('apps'))
 
-  useEffect(()=>{
+  useEffect(() => {
     const info = service.storage.get(selected)
     setAppInfo(info)
     setAppInfoCopy(JSON.stringify(info))
     refresh()
   }, [])
-  
-  useEffect(()=>{
-    if(!appInfo.largeImageKey){return}
-    getMeta(appInfo.largeImageKey).then((res: boolean)=>setPhotoInfo({...photoInfo, large: res}))
-    getMeta(appInfo.smallImageKey).then((res: boolean)=>setPhotoInfo({...photoInfo, small: res}))
+
+  useEffect(() => {
+    if (!appInfo.largeImageKey) {
+      return
+    }
+    getMeta(appInfo.largeImageKey).then((res: boolean) =>
+      setPhotoInfo({ ...photoInfo, large: res })
+    )
+    getMeta(appInfo.smallImageKey).then((res: boolean) =>
+      setPhotoInfo({ ...photoInfo, small: res })
+    )
   }, [appInfo.largeImageKey, appInfo.smallImageKey])
 
   const selectApp = (app: string) => {
@@ -46,33 +52,38 @@ export default function Home() {
   }
 
   const removeApp = (name: string) => {
-    if(name == "Idle"){return}
+    if (name == 'Idle') {
+      return
+    }
     app.setApps(service.storage.remove('apps', name))
     service.storage.removeWhole(name)
-    selectApp("Idle")
+    selectApp('Idle')
   }
 
-  if(!app.settings.clientId){return(<>You need to specify Cliend ID first! Go to &apos;Settings&apos; tab</>)}
+  if (!app.settings.clientId) {
+    return (
+      <>You need to specify Cliend ID first! Go to &apos;Settings&apos; tab</>
+    )
+  }
   return (
     <>
-      <Select 
+      <Select
         styles={styles}
         app={app}
         removeApp={removeApp}
         selectApp={selectApp}
-        selected={selected}/>
-      <hr/>
+        selected={selected}
+      />
+      <hr />
       <div className={styles.index}>
-        <AppInfo
-          styles={styles}
-          appInfo={appInfo}
-          setAppInfo={setAppInfo}/>
+        <AppInfo styles={styles} appInfo={appInfo} setAppInfo={setAppInfo} />
         <Preview
           styles={styles}
           appInfo={appInfo}
           appInfoCopy={appInfoCopy}
           saveApp={saveApp}
-          photoInfo={photoInfo}/>
+          photoInfo={photoInfo}
+        />
       </div>
     </>
   )
