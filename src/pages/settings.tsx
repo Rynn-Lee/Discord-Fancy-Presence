@@ -1,5 +1,5 @@
 import Icon from "@/assets/icons"
-import Input from "@/components/Custom/Input"
+import Input from "@/components/UI/Input"
 import { AppContext } from "./_app"
 import { useContext } from "react"
 

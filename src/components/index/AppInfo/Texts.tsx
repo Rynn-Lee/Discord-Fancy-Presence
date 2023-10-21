@@ -1,4 +1,4 @@
-import Input from "@/components/Custom/Input";
+import Input from "@/components/UI/Input";
 
 export default function Texts({appInfo, setAppInfo}: any){
   return(

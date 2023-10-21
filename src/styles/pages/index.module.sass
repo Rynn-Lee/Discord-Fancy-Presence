@@ -63,14 +63,18 @@
 
 
 .warnings
-  .warn
+  padding-top: 5px
+  display: flex
+  flex-direction: column
+  color: #bd8856
+  &>span
     display: flex
-    color: #df9846
-    border-top: 1px solid var(--var-button)
-    margin-top: 5px
-    padding-top: 5px
-    &>*
-      margin: 0px 4px
+    flex-direction: row
+    align-items: center
+    padding: 0px 4px
+    font-size: 13px
+    &>*:first-child
+      padding-right: 6px 
 
 .smallImage
   position: absolute

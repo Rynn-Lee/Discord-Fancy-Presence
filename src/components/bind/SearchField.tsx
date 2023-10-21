@@ -1,6 +1,6 @@
 import Icon from "@/assets/icons";
 import { service } from "@/services";
-import Input from "../Custom/Input";
+import Input from "../UI/Input";
 import { useEffect } from "react";
 
 export default function SearchField({styles, setProcesses, setShowAll, showAll, setSearch, search}: any){

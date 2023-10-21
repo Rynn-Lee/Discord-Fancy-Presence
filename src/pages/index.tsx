@@ -1,21 +1,21 @@
 import { useContext, useEffect, useState } from "react"
-import { service } from "@/services"
 import { AppContext } from "./_app"
 import styles from '@styles/pages/index.module.sass'
 import Select from "@/components/index/Select"
 import AppInfo from "@/components/index/AppInfo/AppInfo"
-import Preview from "@/components/index/Preview"
+import Preview from "@/components/index/Preview/Preview"
+import { service } from "@/services"
 import useRecorder from "@/hooks/useRecorder"
 
 export default function Home() {
   const app: any = useContext(AppContext)
   const [appInfo, setAppInfo] = useState<any>({})
 
-  useRecorder({watch: appInfo, name: app.settings.selected})
   useEffect(()=>{
     setAppInfo(service.storage.get(app.settings.selected))
   }, [])
 
+  useRecorder({watch: appInfo, name: app.settings.selected})
 
   if(!app.settings.clientId){return(<>You need to specify Cliend ID first! Go to &apos;Settings&apos; tab</>)}
   return (

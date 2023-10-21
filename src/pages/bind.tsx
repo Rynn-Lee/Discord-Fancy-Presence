@@ -10,7 +10,6 @@ export default function Bind() {
   const [showAll, setShowAll] = useState(false)
   const app: any = useContext(AppContext)
 
-
   return (
     <fieldset className={styles.bind}>
       <SearchField

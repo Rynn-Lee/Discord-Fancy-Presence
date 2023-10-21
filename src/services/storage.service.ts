@@ -7,31 +7,32 @@ export const storageService = {
   },
   add(storage: string, key: string, value?: any){
     let res = this.get(storage) || []
-    if(Array.isArray(res)){
-      res.push(key)
-    }
-    else{
-      res[key] = value
-    }
+
+    Array.isArray(res)
+      ? res.push(key)
+      : res[key] = value
+
     this.set(storage, res)
     return res
   },
   remove(storage: string, key: string){
-    let res = this.get(storage)
+    const res = this.get(storage)
     if(!res){return}
-    res = res.filter((item: string) => item != key)
-    this.set(storage, res)
-    return res
+    const updated = res.filter((item: string) => item != key)
+    this.set(storage, updated)
+    return updated
   },
   get(key: string, ifnull?: any){
     const response = localStorage.getItem(key)
-    if(!response){
-      if(ifnull){
-        this.set(key, ifnull)
-        return ifnull
-      }
-      return false
+    if(response){
+      return JSON.parse(response)
     }
-    return JSON.parse(response)
+    console.log("key:", key, ifnull && `If null: ${ifnull}`, response && `response: ${response}`)
+    if(ifnull){
+      this.set(key, ifnull)
+      return ifnull
+    }
+    console.log("IF NULL", key, ifnull)
+    return false
   }
 }

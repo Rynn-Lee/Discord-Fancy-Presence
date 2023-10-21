@@ -1,5 +1,5 @@
-import Input from "@/components/Custom/Input";
-import Toggle from "@/components/Custom/Toggle";
+import Input from "@/components/UI/Input";
+import Toggle from "@/components/UI/Toggle";
 
 export default function Other({appInfo, setAppInfo}: any){
   return(
