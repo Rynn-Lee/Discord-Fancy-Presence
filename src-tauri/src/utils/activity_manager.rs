@@ -3,7 +3,7 @@ use discord_rich_presence::{
     DiscordIpc, DiscordIpcClient,
 };
 use tokio::sync::{mpsc, Mutex};
-
+use std::time::{UNIX_EPOCH,SystemTime};
 // pub fn set_activity() {
 //     println!("set activity");
 // }
@@ -198,10 +198,17 @@ pub fn create_activity_manager() -> (ActivityManagerState, impl FnOnce()) {
                                 } else {
                                     activity_small_image
                                 };
+                                
+                            let activity_time:Activity = if activity_payload.start_timestamp == true {
+                                let time_unix = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() as i64;
+                                activity_small_text.timestamps(activity::Timestamps::new().start(time_unix)).clone()
+                            } else {
+                                activity_small_text
+                            };
                             // ====
 
                             if let Some(client) = activity_client.as_mut() {
-                                client.set_activity(activity_small_text).unwrap();
+                                client.set_activity(activity_time).unwrap();
                             }
                         }
                         ActivityMessage::UpdateClientId(client_id) => {

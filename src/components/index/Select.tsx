@@ -10,8 +10,9 @@ export default function Select({styles, app, setAppInfo}: any){
 
   const removeApp = (name: string) => {
     if(name == "Idle"){return}
-    app.setApps(service.storage.remove('apps', name))
     service.storage.removeWhole(name)
+    app.setSettings({...app.settings, selected: 'Idle'})
+    app.setApps(service.storage.remove('apps', name))
   }
 
   return(

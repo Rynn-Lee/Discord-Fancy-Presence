@@ -5,20 +5,24 @@ import { checkImage } from "@/utils/checkImage";
 import Warnings from "./Warnings";
 
 export default function Preview({styles, appInfo}: any){
-  // const sendrpc = async() => {
-  //   await invoke('setactivity',
-  //   {
-  //     clientId: !appInfo.clientId ? "1118418570855067688" : appInfo.clientId,
-  //     details: appInfo.details,
-  //     state: appInfo.state,
-  //     largeImage: appInfo.largeImageKey,
-  //     largeText: appInfo.largeImageText,
-  //     smallImage: appInfo.smallImageKey,
-  //     smallText: appInfo.smallImageText,
-  //     startTimestamp: appInfo.startTimestamp
-  //   }
-  //   )
-  // }
+  const handleSendRpc = async () => {
+    await invoke('update_activity', {
+      activityPayload: {
+        details: appInfo.details,
+        state: appInfo.state,
+        largeImage: appInfo.largeImageKey,
+        largeText: appInfo.largeImageText,
+        smallImage: appInfo.smallImageKey,
+        smallText: appInfo.smallImageText,
+        startTimestamp: appInfo.startTimestamp
+      }
+    })
+  }
+  const handleUpdateClientId = async () => {
+    await invoke('update_activity_client_id', {
+      clientId: appInfo.clientId ? appInfo.clientId : '1118418570855067688'
+    })
+  }
   
   const [isSquare, setIsSquare] = useState({
     small: true,
@@ -52,6 +56,8 @@ export default function Preview({styles, appInfo}: any){
         styles={styles}
         isSquare={isSquare}
         appInfo={appInfo}/>
+      <button onClick={handleUpdateClientId}>Send ID</button>
+      <button onClick={handleSendRpc}>Send RPC</button>
     </div>
   )
 }

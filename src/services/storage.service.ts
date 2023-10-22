@@ -18,7 +18,9 @@ export const storageService = {
   remove(storage: string, key: string){
     const res = this.get(storage)
     if(!res){return}
+    console.log("BEFORE REMOVE:", res)
     const updated = res.filter((item: string) => item != key)
+    console.log("AFTER REMOVE:", updated)
     this.set(storage, updated)
     return updated
   },

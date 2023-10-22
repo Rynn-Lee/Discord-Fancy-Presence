@@ -9,7 +9,7 @@ export const AppContext: any = createContext('AppContext')
 
 export default function App({ Component, pageProps }: AppProps) {
   const [apps, setApps] = useState([])
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState({ //somehow breaks everything if not specified
     clientId: "",
     updateRate: 60,
     selected: "Idle"
