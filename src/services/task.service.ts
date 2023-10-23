@@ -21,7 +21,6 @@ export const taskService = {
       id: item.id,
       name: item.name.split('.')[0]
     }))
-    console.log(prettified)
     return prettified
   }
 }

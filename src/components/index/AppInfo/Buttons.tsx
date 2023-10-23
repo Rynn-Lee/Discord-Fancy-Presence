@@ -3,8 +3,8 @@ import Input from "@/components/UI/Input";
 export default function Buttons({appInfo, setAppInfo}: any){
   return(
     <fieldset>
-      <legend>Button 1</legend>
-      <legend>Button 2</legend>
+      <legend>Button 1 - soon</legend>
+      <legend>Button 2 - soon</legend>
       {/* <Input 
         placeholder="Label"
         value={appInfo?.buttons[0]?.label}

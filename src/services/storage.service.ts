@@ -18,9 +18,7 @@ export const storageService = {
   remove(storage: string, key: string){
     const res = this.get(storage)
     if(!res){return}
-    console.log("BEFORE REMOVE:", res)
     const updated = res.filter((item: string) => item != key)
-    console.log("AFTER REMOVE:", updated)
     this.set(storage, updated)
     return updated
   },
@@ -29,12 +27,10 @@ export const storageService = {
     if(response){
       return JSON.parse(response)
     }
-    console.log("key:", key, ifnull && `If null: ${ifnull}`, response && `response: ${response}`)
     if(ifnull){
       this.set(key, ifnull)
       return ifnull
     }
-    console.log("IF NULL", key, ifnull)
     return false
   }
 }

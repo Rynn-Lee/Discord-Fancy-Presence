@@ -13,7 +13,7 @@ export default function FAQ(){
         </ul>
       </div>
         
-        <legend className={styles.legend}> • What "Events" do?</legend>
+        <legend className={styles.legend}> • What &quot;Events&quot; do?</legend>
         <div>
           For example, you can set your birthday date. When the day comes, a special activity will be displayed over the others
         </div>

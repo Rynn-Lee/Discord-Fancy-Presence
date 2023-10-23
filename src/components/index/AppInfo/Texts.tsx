@@ -6,12 +6,12 @@ export default function Texts({appInfo, setAppInfo}: any){
       <legend>Details</legend>
       <Input 
         placeholder="Details"
-        value={appInfo?.details}
+        value={appInfo.details}
         onChange={(e)=>setAppInfo({...appInfo, details: e.target.value})}/>
       <legend>State</legend>
       <Input 
         placeholder="State"
-        value={appInfo?.state}
+        value={appInfo.state}
         onChange={(e)=>setAppInfo({...appInfo, state: e.target.value})}/>
     </fieldset>
   )
