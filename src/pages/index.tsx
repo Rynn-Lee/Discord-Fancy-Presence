@@ -12,11 +12,11 @@ export default function Home() {
   const [appInfo, setAppInfo] = useState<any>({})
 
   useEffect(() => {
-    setAppInfo(service.storage.get(app.settings.selected))
+    setAppInfo(service.storage.get(app.selectedApp))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useRecorder({ watch: appInfo, name: app.settings.selected })
+  useRecorder({ watch: appInfo, name: app.selectedApp })
 
   if (!app.settings.clientId) {
     return (

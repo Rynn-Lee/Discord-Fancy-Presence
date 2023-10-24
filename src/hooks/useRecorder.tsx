@@ -6,7 +6,7 @@ export default function useRecorder(...args: any) {
   useEffect(() => {
     if (firstRender) { setFirstRender(false); return; }
 
-    args.forEach((element: {watch: any, name: string}) => {
+    args.forEach((element: {watch: any, name: string, ifnull?: any}) => {
       if(!localStorage.getItem(element.name)){return}
       localStorage.setItem(element.name, JSON.stringify(element.watch));
     });

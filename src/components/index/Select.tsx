@@ -5,22 +5,22 @@ export default function Select({styles, app, setAppInfo}: any){
   
   const selectApp = (value: string) => {
     setAppInfo(service.storage.get(value))
-    app.setSettings({...app.settings, selected: value})
+    app.setSelectedApp(value)
   }
 
   const removeApp = (name: string) => {
     if(name == "Idle"){return}
     service.storage.removeWhole(name)
-    app.setSettings({...app.settings, selected: 'Idle'})
+    app.setSelectedApp("Idle")
     app.setApps(service.storage.remove('apps', name))
   }
 
   return(
     <div className={styles.selectApp}>
-      <select defaultValue={app.settings.selected} onChange={(e)=>selectApp(e.target.value)}>
+      <select defaultValue={app.selectedApp} onChange={(e)=>selectApp(e.target.value)}>
         {app?.apps?.map((item: string) => <option key={item} value={item}>{item}</option>)}
       </select>
-      <button onClick={()=>removeApp(app.settings.selected)}><Icon.Remove/></button>
+      <button onClick={()=>removeApp(app.selectedApp)}><Icon.Remove/></button>
     </div>
   )
 }
