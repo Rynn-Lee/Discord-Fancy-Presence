@@ -32,5 +32,11 @@ export const storageService = {
       return ifnull
     }
     return false
+  },
+  getKey(storage: string, key: string){
+    const response = localStorage.getItem(key) || ''
+    if(response == ''){return false}
+    const filtered = JSON.parse(response)
+    return filtered[key]
   }
 }

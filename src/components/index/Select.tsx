@@ -12,6 +12,7 @@ export default function Select({styles, app, setAppInfo}: any){
     if(name == "Idle"){return}
     service.storage.removeWhole(name)
     app.setSelectedApp("Idle")
+    setAppInfo(service.storage.get("Idle"))
     app.setApps(service.storage.remove('apps', name))
   }
 

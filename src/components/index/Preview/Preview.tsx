@@ -1,27 +1,8 @@
 import Image from "next/image";
-import { invoke } from '@tauri-apps/api/tauri'
 import { useEffect, useState } from "react";
 import { checkImage } from "@/utils/checkImage";
 import Warnings from "./Warnings";
 
-const handleSendRpc = async (appInfo: any) => {
-  await invoke('update_activity', {
-    activityPayload: {
-      details: appInfo.details,
-      state: appInfo.state,
-      largeImage: appInfo.largeImageKey,
-      largeText: appInfo.largeImageText,
-      smallImage: appInfo.smallImageKey,
-      smallText: appInfo.smallImageText,
-      startTimestamp: appInfo.startTimestamp
-    }
-  })
-}
-const handleUpdateClientId = async (appInfo: any) => {
-  await invoke('update_activity_client_id', {
-    clientId: appInfo.clientId ? appInfo.clientId : '1118418570855067688'
-  })
-}
 
 export default function Preview({styles, appInfo}: any){
   const [isSquare, setIsSquare] = useState({
@@ -58,8 +39,6 @@ export default function Preview({styles, appInfo}: any){
         styles={styles}
         isSquare={isSquare}
         appInfo={appInfo}/>
-      <button onClick={()=>handleUpdateClientId(appInfo)}>Send ID</button>
-      <button onClick={()=>handleSendRpc(appInfo)}>Send RPC</button>
     </div>
   )
 }
