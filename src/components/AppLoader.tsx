@@ -9,8 +9,7 @@ export default function AppLoader(){
   useEffect(()=>{
     app.setSettings(service.storage.get('settings', {
       clientId: '1118418570855067688',
-      updateRate: 60,
-      selected: "Idle"
+      updateRate: 60
     }))
     app.setApps(service.storage.get('apps', ["Idle"]))
     service.storage.get("Idle", activityPlaceholder)
