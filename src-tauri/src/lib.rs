@@ -9,6 +9,7 @@ use utils::foreground_processes::ForegroundProcess;
 #[derive(serde::Serialize, Debug)]
 pub struct AppProcess {
     id: u32,
+    title: Option<String>,
     name: String,
     foreground: bool,
 }
@@ -33,15 +34,18 @@ pub fn get_system_processes() -> Vec<AppProcess> {
         .map(|(pid, process)| {
             let process_id = pid.as_u32();
             let process_window_title = foreground_processes_map.get(&process_id);
+            let process_name = process.name().to_owned();
             match process_window_title {
                 Some(title) => AppProcess {
                     foreground: true,
-                    name: title.to_owned(),
+                    title: Some(title.to_owned()),
+                    name: process_name,
                     id: process_id,
                 },
                 None => AppProcess {
                     foreground: false,
-                    name: process.name().to_owned(),
+                    title: None,
+                    name: process_name,
                     id: process_id,
                 },
             }
