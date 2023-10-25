@@ -2,12 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use fancy_drpc::{
     activity_manager::{ActivityManagerState, ActivityPayload},
-    AppProcess,
+    processes::AppProcess,
 };
 
 #[tauri::command]
 fn get_processes() -> Vec<AppProcess> {
-    fancy_drpc::get_system_processes()
+    fancy_drpc::processes::get_system_processes()
 }
 
 #[tauri::command]
