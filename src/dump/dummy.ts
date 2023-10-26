@@ -1,8 +1,9 @@
-export const activityPlaceholder = {
+export const activityPlaceholder = (name: string, priority: number) => ({
   clientId: "",
+  name: name,
   details: "Details",
   state: "State",
-  priority: "1",
+  priority: priority,
   startTimestamp: false,
   largeImageKey: "https://avatars.githubusercontent.com/u/17879520?v=4",
   largeImageText: "Test Image",
@@ -18,4 +19,4 @@ export const activityPlaceholder = {
       url: ""
     }
   ]
-}
+})

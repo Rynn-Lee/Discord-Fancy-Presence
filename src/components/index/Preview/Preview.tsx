@@ -29,7 +29,7 @@ export default function Preview({styles, appInfo}: any){
           {appInfo.smallImageKey && appInfo.largeImageKey? <Image src={appInfo?.smallImageKey} width={70} height={70} alt="Img" className={styles.smallImage}/>  : <></>}
         </div>
         <div className={styles.details}>
-          <span className={styles.appName}><b>Fancy DRPC</b></span>
+          <span className={styles.appName}><b>{appInfo?.name}</b></span>
           <span>{appInfo?.details}</span>
           <span>{appInfo?.state}</span>
           {appInfo?.startTimestamp ? <span>01:50:45 elapsed</span> : <></>}

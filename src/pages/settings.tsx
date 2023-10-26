@@ -5,7 +5,7 @@ import { useContext } from "react"
 
 export default function Settings() {
   const app: any = useContext(AppContext)
-  const update = (key: string, value: string) => app.setSettings({...app.settings, [key]: value})
+  const update = (key: string, value: string | number) => app.setSettings({...app.settings, [key]: value})
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function Settings() {
       <fieldset className="fieldset">
         <legend><Icon.Pen />Update Rate (off if not specified)</legend>
         <Input
-          onChange={(e)=>update('updateRate', e.target.value)}
+          onChange={(e)=>update('updateRate', Number(e.target.value))}
           value={app?.settings.updateRate}
           type="number"/>
       </fieldset>

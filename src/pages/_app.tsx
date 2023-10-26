@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react'
 import type { AppProps } from 'next/app'
 import AppLayout from '@/layouts/AppLayout'
-import AppLoader from '@/components/AppLoader'
+import AppInitializer from '@/components/AppInitializer'
 import useRecorder from '@/hooks/useRecorder'
 import '@/styles/index.sass'
 import { useDirector } from '@/hooks/useDirector'
@@ -10,21 +10,21 @@ export const AppContext: any = createContext('AppContext')
 export const DirectorContext: any = createContext('DirectorContext')
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [apps, setApps] = useState([])
+  const [registeredApps, setRegisteredApps] = useState([])
   const [selectedApp, setSelectedApp] = useState<string>("Idle")
   const [settings, setSettings] = useState({ //somehow breaks everything if not specified
     clientId: "",
-    updateRate: "60"
+    updateRate: 60
   })
 
-  const director = useDirector(settings, apps)
-  useRecorder({watch: apps, name: "apps"}, {watch: settings, name: "settings"})
+  const director = useDirector(settings, registeredApps)
+  useRecorder({watch: registeredApps, name: "registeredApps"}, {watch: settings, name: "settings"})
 
   return (
     <DirectorContext.Provider value={{director}}>
-      <AppContext.Provider value={{setSettings, settings, setApps, apps, setSelectedApp, selectedApp}}>
+      <AppContext.Provider value={{setSettings, settings, setRegisteredApps, registeredApps, setSelectedApp, selectedApp}}>
         <AppLayout>
-          {!apps.length ? <AppLoader/> : <></>}
+          {!registeredApps.length ? <AppInitializer/> : <></>}
           <Component {...pageProps}/>
         </AppLayout>
       </AppContext.Provider>

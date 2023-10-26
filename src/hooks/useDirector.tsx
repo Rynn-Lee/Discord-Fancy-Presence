@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { invoke } from '@tauri-apps/api/tauri'
 
 const isObjEqual = (object1: any, object2: any) => {
@@ -33,7 +33,7 @@ const handleUpdateClientId = async (id: any) => {
   return true
 }
 const filter = async(processes: any) => {
-  const uniqueNames: any = {"fancy-drpc": true};
+  const uniqueNames: any = {};
   const filteredProcesses = processes.filter((process: any) => {
     const name = process.name.split('.')[0]
     if (!uniqueNames[name]){
@@ -43,10 +43,11 @@ const filter = async(processes: any) => {
     return false;
   });
 
-  const prettified = filteredProcesses.map((item: {id: number, name: string, foreground: boolean}) => ({
+  const prettified = filteredProcesses.map((item: {id: number, name: string, foreground: boolean, title: string}) => ({
     foreground: item.foreground,
     id: item.id,
-    name: item.name.split('.')[0]
+    name: item.name.split('.')[0],
+    title: item.title
   }))
   return prettified
 }
@@ -56,7 +57,7 @@ const checkApps = async(registeredApps: [string], processList: any) => {
     if(registeredApps.includes(item.name)){
       const appInfo = localStorage.getItem(item.name)
       const ifExists = appInfo ? JSON.parse(appInfo) : {}
-      newArr.push({...ifExists, date: Math.floor(Date.now()), name: item.name})
+      newArr.push({...ifExists, date: Math.floor(Date.now())})
     }
   })
   return newArr
@@ -67,22 +68,27 @@ const mostPreferredApp = async(activeApps: any) => {
     index: 0
   }
   activeApps.forEach((app: any, index: number) => {
-    if(Number(app.priority) > Number(preferredApp.priority)){
+    if(app.priority > preferredApp.priority){
       preferredApp = {priority: app.priority, index: index}
     }
   })
   return activeApps[preferredApp.index]
 }
 
-export const useDirector = (settings: {clientId: string, updateRate: string}, registeredApps: any) => {
+export const useDirector = (settings: {clientId: string, updateRate: number}, registeredApps: any) => {
   // STATES
+  const counter = useRef(false)
   const selectedApp = useRef<any>()
   const prevID = useRef<string>()
 
   // INITIALIZERS
   useEffect(()=>{
-    if(!settings || !registeredApps){return}
-    setupRPC() 
+    if(!settings || !registeredApps.length){return}
+    console.log(settings)
+    if(!counter.current){
+      setupRPC()
+      counter.current = true
+    }
   }, [settings, registeredApps])
 
   // PRIVATE FUNCTIONS
@@ -90,10 +96,7 @@ export const useDirector = (settings: {clientId: string, updateRate: string}, re
   const getActiveApps = async(processList: any) => await checkApps(registeredApps, processList)
 
   const sendRPC = async(newPreffered: any) => {
-    console.log("Sent new rpc!")
     if(newPreffered.clientId != prevID.current){
-      console.log(newPreffered)
-      console.log("NEW ID DETECTED")
       prevID.current = newPreffered.clientId
       await handleUpdateClientId(newPreffered?.clientId ? newPreffered.clientId : settings.clientId)
     }
@@ -106,7 +109,6 @@ export const useDirector = (settings: {clientId: string, updateRate: string}, re
     const runningApps = await getActiveApps(processList)
     if(!runningApps){return}
     const newPreffered = await mostPreferredApp(runningApps)
-    console.log(runningApps)
     if(!newPreffered){return}
     if(!selectedApp.current || selectedApp.current.name != newPreffered.name || !isObjEqual(newPreffered, selectedApp.current)){
       selectedApp.current = newPreffered
@@ -115,7 +117,7 @@ export const useDirector = (settings: {clientId: string, updateRate: string}, re
   }
 
   const newTimer = () => (
-    setTimeout(()=>setupRPC(), Number(settings.updateRate)*1000)
+    setTimeout(()=>setupRPC(), settings.updateRate*1000)
   )
 
   return {}

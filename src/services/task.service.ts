@@ -16,10 +16,11 @@ export const taskService = {
       return false;
     });
 
-    const prettified = filteredProcesses.map((item: {id: number, name: string, foreground: boolean}) => ({
+    const prettified = filteredProcesses.map((item: {id: number, name: string, foreground: boolean, title: string}) => ({
       foreground: item.foreground,
       id: item.id,
-      name: item.name.split('.')[0]
+      name: item.name.split('.')[0],
+      title: item.title
     }))
     return prettified
   }

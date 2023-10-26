@@ -19,13 +19,13 @@ export default function Other({appInfo, setAppInfo}: any){
           value={appInfo.clientId}
           onChange={(e)=>setAppInfo({...appInfo, clientId: e.target.value})}/>
 
-        <legend>Priority level {appInfo.name}</legend>
+        <legend>Priority level</legend>
         <Input 
           fancy={{text: "Priority"}}
           value={appInfo.priority}
           type="number"
-          disabled={app.settings.selected == "Idle" ? true : false}
-          onChange={(e)=>setAppInfo({...appInfo, priority: e.target.value})}/>
+          disabled={appInfo.name === "Idle"}
+          onChange={(e)=>setAppInfo({...appInfo, priority: Number(e.target.value)})}/>
       </fieldset>
     </>
   )
