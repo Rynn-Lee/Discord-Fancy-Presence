@@ -26,7 +26,7 @@ export default function Preview({styles, appInfo}: any){
         <legend className={styles.previewTitle}>RPC preview</legend>
         <div className={styles.photos}>
           {appInfo.largeImageKey ? <Image src={appInfo?.largeImageKey} width={70} height={70} alt="Img"/> : <></>}
-          {appInfo.smallImageKey ? <Image src={appInfo?.smallImageKey} width={70} height={70} alt="Img" className={styles.smallImage}/>  : <></>}
+          {appInfo.smallImageKey && appInfo.largeImageKey? <Image src={appInfo?.smallImageKey} width={70} height={70} alt="Img" className={styles.smallImage}/>  : <></>}
         </div>
         <div className={styles.details}>
           <span className={styles.appName}><b>Fancy DRPC</b></span>

@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { invoke } from '@tauri-apps/api/tauri'
 
-interface activeAppsInterface {
-  name?: String
-  date?: String
-}
-
 const isObjEqual = (object1: any, object2: any) => {
   object1.date = ""
   object2.date = ""
@@ -67,16 +62,19 @@ const checkApps = async(registeredApps: [string], processList: any) => {
   return newArr
 }
 const mostPreferredApp = async(activeApps: any) => {
-  let preferredApp = activeApps[0]
-  activeApps.forEach((app: any) => {
-    if(Number(app.priority) > Number(preferredApp?.priority)){
-      preferredApp = app
+  let preferredApp = {
+    priority: 0,
+    index: 0
+  }
+  activeApps.forEach((app: any, index: number) => {
+    if(Number(app.priority) > Number(preferredApp.priority)){
+      preferredApp = {priority: app.priority, index: index}
     }
   })
-  return preferredApp
+  return activeApps[preferredApp.index]
 }
 
-export const useDirector = (settings: {clientId: string, updateRate: string}, registeredApps: [string]) => {
+export const useDirector = (settings: {clientId: string, updateRate: string}, registeredApps: any) => {
   // STATES
   const selectedApp = useRef<any>()
   const prevID = useRef<string>()
@@ -94,6 +92,7 @@ export const useDirector = (settings: {clientId: string, updateRate: string}, re
   const sendRPC = async(newPreffered: any) => {
     console.log("Sent new rpc!")
     if(newPreffered.clientId != prevID.current){
+      console.log(newPreffered)
       console.log("NEW ID DETECTED")
       prevID.current = newPreffered.clientId
       await handleUpdateClientId(newPreffered?.clientId ? newPreffered.clientId : settings.clientId)
@@ -102,15 +101,17 @@ export const useDirector = (settings: {clientId: string, updateRate: string}, re
   }
 
   const setupRPC = async() => {
+    newTimer()
     const processList = await getProcesses()
     const runningApps = await getActiveApps(processList)
+    if(!runningApps){return}
     const newPreffered = await mostPreferredApp(runningApps)
+    console.log(runningApps)
     if(!newPreffered){return}
     if(!selectedApp.current || selectedApp.current.name != newPreffered.name || !isObjEqual(newPreffered, selectedApp.current)){
       selectedApp.current = newPreffered
       sendRPC(newPreffered)
     }
-    newTimer()
   }
 
   const newTimer = () => (

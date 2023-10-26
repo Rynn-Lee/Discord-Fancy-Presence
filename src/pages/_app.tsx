@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [selectedApp, setSelectedApp] = useState<string>("Idle")
   const [settings, setSettings] = useState({ //somehow breaks everything if not specified
     clientId: "",
-    updateRate: 60
+    updateRate: "60"
   })
 
   const director = useDirector(settings, apps)
