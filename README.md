@@ -1,40 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🤔 What's this project?
+This is an enthusiastic project that came up to my mind someday<br>
+Have you tried to make your own rich-presence status for discord with NodeJS?<br>
+It's inconvinient and not dynamic, right?<br>
+This project exists to help you with your custom status<br>
 
-## Getting Started
+## ❔ Why do i need a custom status for discord?
+It's beautiful and customizable! It represents you!<br>
+Your favorite app doesn't have an rpc? You want to show off or prank people?<br>
+With this app you can choose what to show in your status when a selected app is running<br>
+It also has a built in preview of your rpc!<br>
+You have an ability to set a custom ClientID, so it will show any app's name you want (Fancy-DRPC by default)
 
-First, run the development server:
+## 💻 What tech stack is used?
+Front-end: NextJS, Sass, styled-components<br>
+Back-end: Tauri, Rust<br>
+State management: context-api <br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## ✏️ How it looks like? 
+![Preview](https://github.com/Rynn-Lee/Fancy-DRPC/blob/main/public/discord-preview.png)
+![Preview2](https://github.com/Rynn-Lee/Fancy-DRPC/blob/main/public/Preview.png)
