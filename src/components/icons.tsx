@@ -152,8 +152,8 @@ const Calendar = (props: IconProps) => {
   )
 }
 
-const Icon = {
+const Icons = {
   Add,  Display,  Info,  Settings,  FAQ,  Pen,  Eye, Remove, Check, ExclamationMark, Server, User, Refresh, Controller, Calendar
 }
 
-export default Icon
+export default Icons
