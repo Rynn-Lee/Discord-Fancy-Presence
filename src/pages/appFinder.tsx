@@ -1,8 +1,8 @@
 import { useState } from "react"
 import styles from '@styles/pages/appFinder.module.sass'
-import Input from "@/components/UI/Input"
+import Input from "@/components/ui/Input"
 import appListJson from '../../appIdList.json'
-import Icon from "@/assets/icons"
+import Icons from "@/components/icons"
 
 export default function AppFinder() {
   const [copiedId, setCopiedId] = useState("")
@@ -27,7 +27,7 @@ export default function AppFinder() {
             <div style={{display: 'flex', alignItems: 'center'}}>
               <span>{item.id}</span>
               <button style={{marginLeft: 10, backgroundColor: copiedId == item.id ? '#59772e' : '#3d4052'}} onClick={()=>{navigator.clipboard.writeText(item.id), setCopiedId(item.id)}}>
-                <Icon.Clipboard />
+                <Icons.Clipboard />
               </button>
             </div>
           </div>

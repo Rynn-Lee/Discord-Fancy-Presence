@@ -1,25 +1,25 @@
-import { useContext, useEffect, useState } from 'react'
-import { AppContext } from './_app'
-import styles from '@styles/pages/index.module.sass'
-import Select from '@/components/index/Select'
-import AppInfo from '@/components/index/AppInfo/AppInfo'
-import Preview from '@/components/index/Preview/Preview'
-import { service } from '@/services'
-import useRecorder from '@/hooks/useRecorder'
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "./_app";
+import styles from "@styles/pages/index.module.sass";
+import Select from "@/components/pages/home/Select";
+import AppInfo from "@/components/pages/home/AppInfo/AppInfo";
+import Preview from "@/components/pages/home/Preview/Preview";
+import { service } from "@/services";
+import useRecorder from "@/hooks/useRecorder";
 
 export default function Home() {
-  const app: any = useContext(AppContext)
-  const [appInfo, setAppInfo] = useState<any>({})
+  const app: any = useContext(AppContext);
+  const [appInfo, setAppInfo] = useState<any>({});
 
   useEffect(() => {
-    setAppInfo(service.storage.get(app.selectedApp))
+    setAppInfo(service.storage.get(app.selectedApp));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  useRecorder({ watch: appInfo, name: app.selectedApp })
+  useRecorder({ watch: appInfo, name: app.selectedApp });
 
   if (!app.settings.clientId) {
-    return (<>You need to specify Cliend ID first! Go to &apos;Settings&apos; tab</>)
+    return (<>You need to specify Client ID first! Go to &apos;Settings&apos; tab</>)
   }
   return (
     <>
@@ -30,5 +30,5 @@ export default function Home() {
         <Preview styles={styles} appInfo={appInfo} />
       </div>
     </>
-  )
+  );
 }

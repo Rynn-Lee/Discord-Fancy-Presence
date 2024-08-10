@@ -1,7 +1,7 @@
-import Input from "@/components/UI/Input";
+import Input from "@/components/ui/input";
 
-export default function Buttons({appInfo, setAppInfo}: any){
-  return(
+export default function Buttons({ appInfo, setAppInfo }: any) {
+  return (
     <fieldset>
       <legend>Button 1 - soon</legend>
       <legend>Button 2 - soon</legend>
@@ -26,5 +26,5 @@ export default function Buttons({appInfo, setAppInfo}: any){
         // onChange={(e)=>setAppInfo({...appInfo, largeImageText: e.target.value})}
         /> */}
     </fieldset>
-  )
+  );
 }

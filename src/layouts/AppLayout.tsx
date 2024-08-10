@@ -1,9 +1,9 @@
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/sidebar";
 import Head from "next/head";
-import styles from '@styles/applayout.module.sass'
+import styles from "@styles/applayout.module.sass";
 
-export default function AppLayout({children}: any){
-  return(
+export default function AppLayout({ children }: any) {
+  return (
     <>
       <Head>
         <title>Fancy DRPC</title>
@@ -12,9 +12,7 @@ export default function AppLayout({children}: any){
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Sidebar />
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </>
-  )
+  );
 }

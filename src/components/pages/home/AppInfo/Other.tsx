@@ -1,5 +1,5 @@
-import Input from "@/components/UI/Input";
-import Toggle from "@/components/UI/Toggle";
+import Input from "@/components/ui/Input";
+import Toggle from "@/components/ui/Toggle";
 import { AppContext } from "@/pages/_app";
 import { useContext } from "react";
 

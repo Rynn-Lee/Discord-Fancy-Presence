@@ -1,10 +1,10 @@
-import { service } from "@/services"
-import { useContext, useEffect } from "react"
-import { AppContext } from "../pages/_app"
-import { activityPlaceholder } from "@/dump/dummy"
+import { service } from "@/services";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../pages/_app";
+import { activityPlaceholder } from "@/dump/dummy";
 
-export default function AppLoader(){
-  const app: any = useContext(AppContext)
+export default function AppLoader() {
+  const app: any = useContext(AppContext);
 
   useEffect(()=>{
     service.storage.get("Idle", activityPlaceholder("Idle", 1))

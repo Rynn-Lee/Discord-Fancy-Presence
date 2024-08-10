@@ -155,11 +155,11 @@ const Calendar = (props: IconProps) => {
 const Find = (props: IconProps) => {
   return(
     <svg width="20px" height="20px" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 4C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V13M10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M10 16H6" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="18" cy="17" r="3" stroke="#dadde0" stroke-width="1.5"/>
-      <path d="M20.5 19.5L21.5 20.5" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M2 10L7 10M22 10L11 10" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M14 4C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V13M10 4C6.22876 4 4.34315 4 3.17157 5.17157C2 6.34315 2 8.22876 2 12C2 15.7712 2 17.6569 3.17157 18.8284C4.34315 20 6.22876 20 10 20H13" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M10 16H6" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="18" cy="17" r="3" stroke="#dadde0" strokeWidth="1.5"/>
+      <path d="M20.5 19.5L21.5 20.5" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M2 10L7 10M22 10L11 10" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   )
 }
@@ -167,16 +167,16 @@ const Find = (props: IconProps) => {
 const Clipboard = (props: IconProps) => {
   return(
     <svg width="20px" height="20px" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 18H12.5" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z" stroke="#dadde0" stroke-width="1.5"/>
-      <path d="M21 16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V13.0002M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V12.0002M8 4.00195C5.82497 4.01406 4.64706 4.11051 3.87868 4.87889C3.11032 5.64725 3.01385 6.82511 3.00174 9" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M7 14.5H8M15 14.5H11" stroke="#dadde0" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M7 18H12.5" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z" stroke="#dadde0" strokeWidth="1.5"/>
+      <path d="M21 16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V13.0002M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V12.0002M8 4.00195C5.82497 4.01406 4.64706 4.11051 3.87868 4.87889C3.11032 5.64725 3.01385 6.82511 3.00174 9" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M7 14.5H8M15 14.5H11" stroke="#dadde0" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   )
 }
 
-const Icon = {
+const Icons = {
   Add,  Display,  Info,  Settings,  FAQ,  Pen,  Eye, Remove, Check, ExclamationMark, Server, User, Refresh, Controller, Calendar, Find, Clipboard
 }
 
-export default Icon
+export default Icons
