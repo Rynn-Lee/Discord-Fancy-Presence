@@ -16,8 +16,14 @@ export default function ProcessList({styles, processes, app, showAll, search}: a
         (showAll ? !item.foreground : item.foreground) && //If "ShowAll" is on
         (
           <div key={`${item.id}${item.name}`} className={styles.process}>
-            <button onClick={() => addProcess(item.name)}>+</button>
-            <span>{item.foreground ? `${item.title} | ${item.name}` : item.name}</span>
+            <button onClick={() => addProcess(item.name)} style={{marginRight: 12}}>+</button>
+            {item.foreground
+              ? <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+                  <span>{item.title}</span>
+                  <span>{item.name}</span>
+                </div>
+              : <span>{item.name}</span>
+            }
           </div>
         )
       )}

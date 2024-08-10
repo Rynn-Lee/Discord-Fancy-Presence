@@ -21,7 +21,11 @@ const handleSendRpc = async (appInfo: any) => {
       largeText: appInfo.largeImageText,
       smallImage: appInfo.smallImageKey,
       smallText: appInfo.smallImageText,
-      startTimestamp: appInfo.startTimestamp
+      startTimestamp: appInfo.startTimestamp,
+      button1Text: "Visit this project",
+      button1Url: "https://github.com/Rynn-Lee/Fancy-DRPC",
+      button2Text: appInfo.button2Text ?? "",
+      button2Url: appInfo.button2Url ?? "",
     }
   })
   return true

@@ -63,21 +63,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 
 [[package]]
-name = "app"
-version = "0.1.0"
-dependencies = [
- "discord-rich-presence",
- "serde",
- "serde_json",
- "sysinfo",
- "tauri",
- "tauri-build",
- "tokio",
- "winapi",
- "windows 0.51.1",
-]
-
-[[package]]
 name = "atk"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -700,6 +685,21 @@ checksum = "aa68f1b12764fab894d2755d2518754e71b4fd80ecfb822714a1206c2aab39bf"
 dependencies = [
  "cc",
  "libc",
+]
+
+[[package]]
+name = "fancy_drpc"
+version = "0.1.1"
+dependencies = [
+ "discord-rich-presence",
+ "serde",
+ "serde_json",
+ "sysinfo",
+ "tauri",
+ "tauri-build",
+ "tokio",
+ "winapi",
+ "windows 0.51.1",
 ]
 
 [[package]]

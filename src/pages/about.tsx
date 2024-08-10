@@ -5,7 +5,7 @@ export default function About() {
     <div className={styles.about}>
       <fieldset className={styles.fieldset}>
         <legend>Fancy DRPC (Discord Rich Presence)</legend>
-          Alpha 0.0.1
+          Pre-release 0.1.1
       </fieldset>
       <fieldset className={styles.fieldset}>
         <legend>Devs</legend>

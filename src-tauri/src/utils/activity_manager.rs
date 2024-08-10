@@ -17,6 +17,14 @@ pub struct ActivityPayload {
     small_image: String,
     #[serde(rename = "smallText")]
     small_text: String,
+    #[serde(rename = "button1Text")]
+    button_1_text: String,
+    #[serde(rename = "button1Url")]
+    button_1_url: String,
+    #[serde(rename = "button2Text")]
+    button_2_text: String,
+    #[serde(rename = "button2Url")]
+    button_2_url: String,
     #[serde(rename = "startTimestamp")]
     start_timestamp: bool,
 }
@@ -54,7 +62,24 @@ fn build_activity(activity_payload: &ActivityPayload) -> Activity {
     if !activity_payload.small_text.is_empty() {
         assets = assets.small_text(&activity_payload.small_text);
     }
+
     activity = activity.assets(assets);
+
+    // if !activity_payload.button_1_text.is_empty() && !activity_payload.button_1_url.is_empty(){
+    //     println!("{} {}", "button 1 text :", &activity_payload.button_1_text);
+    //     println!("{} {}", "button 1 url :", &activity_payload.button_1_url);
+    //     activity = activity.buttons(vec![
+    //         activity::Button::new(&activity_payload.button_1_text, &activity_payload.button_1_url)
+    //     ]);
+    // }
+    // if !activity_payload.button_1_text.is_empty() && !activity_payload.button_1_url.is_empty() && !activity_payload.button_2_text.is_empty() && !activity_payload.button_2_url.is_empty(){
+    //     println!("{} {}", "button 2 text :", &activity_payload.button_2_text);
+    //     println!("{} {}", "button 2 url :", &activity_payload.button_2_url);
+    //     activity = activity.buttons(vec![
+    //         activity::Button::new(&activity_payload.button_1_text, &activity_payload.button_1_url),
+    //         activity::Button::new(&activity_payload.button_2_text, &activity_payload.button_2_url),
+    //     ]);
+    // }
 
     if activity_payload.start_timestamp {
         let time_unix = SystemTime::now()

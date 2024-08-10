@@ -1,11 +1,11 @@
 [package]
-name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "fancy_drpc"
+version = "0.1.1"
+description = "An app that allows you to set custom discord status for app"
+authors = ["Everrynn", "SketchPiece"]
 license = ""
-repository = ""
-default-run = "app"
+repository = "https://github.com/Rynn-Lee/Fancy-DRPC"
+default-run = "fancy_drpc"
 edition = "2021"
 rust-version = "1.60"
 
