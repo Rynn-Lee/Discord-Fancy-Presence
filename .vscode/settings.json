@@ -2,7 +2,10 @@
   "git.decorations.enabled": false,
   "cSpell.words": [
     "drpc",
+    "HWND",
+    "lparam",
     "sysinfo",
-    "thiserror"
+    "thiserror",
+    "WINDOWINFO"
   ]
 }
