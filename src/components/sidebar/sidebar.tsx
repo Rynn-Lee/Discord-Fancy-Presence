@@ -28,6 +28,7 @@ export default function Sidebar() {
           <Icons.FAQ />
           FAQ
         </Link>
+        <Link href="/dev" className={activeRouteStyles("/dev")}>Dev View</Link>
       </div>
       <div className={styles.tab}>
         <Link href="about" className={activeRouteStyles("/about")}>
