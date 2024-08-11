@@ -1,7 +1,8 @@
 use std::collections::HashMap;
 
-use sysinfo::{PidExt, ProcessExt, System, SystemExt};
+use sysinfo::{ProcessesToUpdate, System};
 
+// use sysinfo::System;
 mod macos;
 mod windows;
 
@@ -28,7 +29,7 @@ pub fn get_foreground_processes() -> Vec<ForegroundProcess> {
     }
 }
 
-fn normilize_foreground_processes(processes: Vec<ForegroundProcess>) -> HashMap<u32, String> {
+fn normalize_foreground_processes(processes: Vec<ForegroundProcess>) -> HashMap<u32, String> {
     processes
         .into_iter()
         .map(|p| (p.process_id, p.title))
@@ -37,9 +38,9 @@ fn normilize_foreground_processes(processes: Vec<ForegroundProcess>) -> HashMap<
 
 pub fn get_system_processes() -> Vec<AppProcess> {
     let mut sys = System::new_all();
-    sys.refresh_processes();
+    sys.refresh_processes(ProcessesToUpdate::All);
 
-    let foreground_processes_map = normilize_foreground_processes(get_foreground_processes());
+    let foreground_processes_map = normalize_foreground_processes(get_foreground_processes());
 
     let processes: Vec<AppProcess> = sys
         .processes()
@@ -47,7 +48,11 @@ pub fn get_system_processes() -> Vec<AppProcess> {
         .map(|(pid, process)| {
             let process_id = pid.as_u32();
             let process_window_title = foreground_processes_map.get(&process_id);
-            let process_name = process.name().to_owned();
+            let process_name = process
+                .name()
+                .to_owned()
+                .into_string()
+                .expect("Error converting OS String into string");
             match process_window_title {
                 Some(title) => AppProcess {
                     foreground: true,

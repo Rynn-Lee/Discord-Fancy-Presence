@@ -1,2 +1,2 @@
-pub mod activity_manager;
+pub mod activity;
 pub mod processes;
