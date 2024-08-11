@@ -3,13 +3,13 @@
 
 use fancy_drpc::{
     activity::{ActivityManager, ActivityPayload},
-    processes::AppProcess,
+    processes::{ProcessPayload, Processes},
 };
 use tauri::Manager;
 
 #[tauri::command]
-fn get_processes() -> Vec<AppProcess> {
-    fancy_drpc::processes::get_system_processes()
+fn get_processes() -> Vec<ProcessPayload> {
+    Processes::get_system_processes()
 }
 
 #[tauri::command]

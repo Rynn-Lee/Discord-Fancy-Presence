@@ -1,4 +1,4 @@
-use super::ForegroundProcess;
+use super::GuiProcess;
 #[cfg(windows)]
 use std::{cell::RefCell, rc::Rc};
 #[cfg(windows)]
@@ -43,7 +43,7 @@ extern "system" fn enum_window(window: HWND, lparam: LPARAM) -> BOOL {
 }
 
 #[cfg(windows)]
-pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
+pub fn get_windows_gui_processes() -> Vec<GuiProcess> {
     let windows_info = Rc::new(RefCell::new(Vec::<WindowInfo>::new()));
 
     unsafe {
@@ -57,7 +57,7 @@ pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
     let processes = windows_info
         .borrow()
         .iter()
-        .map(|win| ForegroundProcess {
+        .map(|win| GuiProcess {
             process_id: win.process_id,
             title: win.title.clone(),
         })
@@ -66,6 +66,6 @@ pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
 }
 
 #[cfg(not(windows))]
-pub fn get_windows_foreground_processes() -> Vec<ForegroundProcess> {
+pub fn get_windows_gui_processes() -> Vec<GuiProcess> {
     vec![]
 }
