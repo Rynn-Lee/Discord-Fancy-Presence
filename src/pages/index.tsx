@@ -1,34 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "./_app";
-import styles from "@styles/pages/index.module.sass";
-import Select from "@/components/pages/home/Select";
-import AppInfo from "@/components/pages/home/AppInfo/AppInfo";
-import Preview from "@/components/pages/home/Preview/Preview";
-import { service } from "@/services";
-import useRecorder from "@/hooks/useRecorder";
+import styles from '@styles/pages/index.module.sass'
 
-export default function Home() {
-  const app: any = useContext(AppContext);
-  const [appInfo, setAppInfo] = useState<any>({});
-
-  useEffect(() => {
-    setAppInfo(service.storage.get(app.selectedApp));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useRecorder({ watch: appInfo, name: app.selectedApp });
-
-  if (!app.settings.clientId) {
-    return (<>You need to specify Client ID first! Go to &apos;Settings&apos; tab</>)
-  }
-  return (
-    <>
-      <Select setAppInfo={setAppInfo} styles={styles} app={app} />
-      <hr />
-      <div className={styles.index}>
-        <AppInfo styles={styles} appInfo={appInfo} setAppInfo={setAppInfo} />
-        <Preview styles={styles} appInfo={appInfo} />
-      </div>
-    </>
-  );
+export default function Home(){
+  return(
+    <div>
+      Biba
+    </div>
+  )
 }

@@ -1,28 +1,18 @@
 .sidebar
-  position: fixed
-  top: 0px
-  left: 0px
-  height: 100vh
   width: 200px
+  height: 100vh
   background: var(--var-accent2)
   display: flex
+  flex-direction: column
   justify-content: space-between
-  flex-direction: column
-  align-items: flex-start
-
-.tab
-  display: flex
-  flex-direction: column
-  justify-content: center
-  width: 100%
   a
-    padding: 10px 15px
+    transition: var(--var-transition)
     display: flex
     align-items: center
-    transition: var(--var-transition)
-    &>*
-      margin: 0px 5px 0px 0px
-
-.active
-  color: var(--var-link) !important
-  background: var(--var-accent1-hover)
+    width: auto
+    padding: 10px 12px
+    &>svg
+      margin-right: 6px
+  .active
+    background: var(--var-accent1-hover) !important
+    color: var(--var-link) !important
