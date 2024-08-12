@@ -3,9 +3,10 @@
 
 use fancy_drpc::{
     activity::{ActivityManager, ActivityPayload},
+    error::DrpcError,
     processes::{ProcessPayload, Processes},
 };
-use tauri::Manager;
+use tauri::{AppHandle, Manager};
 
 #[tauri::command]
 fn get_processes() -> Vec<ProcessPayload> {
@@ -16,9 +17,8 @@ fn get_processes() -> Vec<ProcessPayload> {
 async fn update_activity(
     manager: tauri::State<'_, ActivityManager>,
     activity_payload: ActivityPayload,
-) -> Result<(), ()> {
-    // todo: return error
-    let _ = manager.update_activity(activity_payload).await;
+) -> Result<(), DrpcError> {
+    manager.update_activity(activity_payload).await?;
     Ok(())
 }
 
@@ -26,14 +26,14 @@ async fn update_activity(
 async fn update_activity_client_id(
     manager: tauri::State<'_, ActivityManager>,
     client_id: String,
-) -> Result<(), ()> {
-    // todo: same as above
-    let _ = manager.update_client_id(client_id).await;
+) -> Result<(), DrpcError> {
+    manager.update_client_id(client_id).await?;
     Ok(())
 }
 
 #[derive(Clone, serde::Serialize)]
 struct RuntimeErrorPayload {
+    #[serde(rename = "errorCode")]
     error_code: String,
 }
 
@@ -50,12 +50,7 @@ fn main() {
 
             tauri::async_runtime::spawn(async move {
                 while let Some(error_code) = error_receiver.recv().await {
-                    if handle
-                        .emit_all("activity_runtime_error", RuntimeErrorPayload { error_code })
-                        .is_err()
-                    {
-                        eprintln!("Error emitting activity runtime error")
-                    };
+                    emit_runtime_error(&handle, error_code)
                 }
             });
 
@@ -68,4 +63,14 @@ fn main() {
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+fn emit_runtime_error(handle: &AppHandle, error_code: String) {
+    eprintln!("Activity runtime error: {}", error_code);
+    if handle
+        .emit_all("activity_runtime_error", RuntimeErrorPayload { error_code })
+        .is_err()
+    {
+        eprintln!("Failed to send runtime error to the frontend")
+    };
 }

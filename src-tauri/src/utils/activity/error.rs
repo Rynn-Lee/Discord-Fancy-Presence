@@ -1,16 +1,19 @@
 use thiserror::Error;
 
 #[derive(Error, Debug)]
-pub enum ActivityError {
+pub enum ActivityRuntimeError {
     #[error("failed to connect to the discord client")]
-    ClientConnectFailed,
+    ClientConnectionFailed,
 
     #[error("failed to set activity to the client")]
     SettingActivityFailed,
 
     #[error("client is not connected to discord")]
-    DisconnectedClient,
+    ClientNotConnected,
+}
 
-    #[error("failed to send activity message")]
-    SendError,
+#[derive(Error, Debug)]
+pub enum ActivityError {
+    #[error("failed to send runtime message")]
+    SendRuntimeError,
 }

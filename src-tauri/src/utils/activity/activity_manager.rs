@@ -1,9 +1,13 @@
-use super::{error::ActivityError, helpers::build_activity, ActivityPayload};
+use super::{
+    error::ActivityError, error::ActivityRuntimeError, helpers::build_activity, ActivityPayload,
+};
 use discord_rich_presence::{DiscordIpc, DiscordIpcClient};
 use tokio::sync::mpsc;
 
 use ActivityError as AE;
+use ActivityRuntimeError as RE;
 
+#[derive(Debug)]
 enum ActivityMessage {
     UpdateActivity(Box<ActivityPayload>),
     UpdateClientId(String),
@@ -25,7 +29,7 @@ impl ActivityManager {
         self.sender
             .send(ActivityMessage::UpdateClientId(client_id))
             .await
-            .or(Err(AE::SendError))?;
+            .or(Err(AE::SendRuntimeError))?;
         Ok(())
     }
 
@@ -36,7 +40,7 @@ impl ActivityManager {
         self.sender
             .send(ActivityMessage::UpdateActivity(Box::new(activity_payload)))
             .await
-            .or(Err(AE::SendError))?;
+            .or(Err(AE::SendRuntimeError))?;
         Ok(())
     }
 
@@ -48,20 +52,16 @@ impl ActivityManager {
             let mut client: Option<DiscordIpcClient> = None;
             while let Some(message) = receiver.recv().await {
                 match message {
-                    // todo: handle activity errors
                     ActivityMessage::UpdateClientId(client_id) => {
-                        if let Err(_error) = Self::handle_update_client_id(&mut client, &client_id)
-                        {
-                            handle_error(&error_sender).await;
-                            // error_handler(get_error_code(&error));
+                        if let Err(error) = Self::handle_update_client_id(&mut client, &client_id) {
+                            handle_error(&error_sender, &error).await;
                         };
                     }
                     ActivityMessage::UpdateActivity(activity_payload) => {
-                        if let Err(_error) =
+                        if let Err(error) =
                             Self::handle_update_activity(&mut client, &activity_payload)
                         {
-                            handle_error(&error_sender).await;
-                            // error_handler(get_error_code(&error));
+                            handle_error(&error_sender, &error).await;
                         };
                     }
                 }
@@ -74,11 +74,11 @@ impl ActivityManager {
     fn handle_update_client_id(
         client: &mut Option<DiscordIpcClient>,
         new_client_id: &str,
-    ) -> Result<(), ActivityError> {
+    ) -> Result<(), ActivityRuntimeError> {
         let mut new_client = DiscordIpcClient::new(new_client_id)
             .expect("creating new client instance should not fail");
 
-        new_client.connect().or(Err(AE::ClientConnectFailed))?;
+        new_client.connect().or(Err(RE::ClientConnectionFailed))?;
         *client = Some(new_client);
         Ok(())
     }
@@ -86,19 +86,24 @@ impl ActivityManager {
     fn handle_update_activity(
         client: &mut Option<DiscordIpcClient>,
         payload: &ActivityPayload,
-    ) -> Result<(), ActivityError> {
+    ) -> Result<(), ActivityRuntimeError> {
         if let Some(client) = client.as_mut() {
             let activity = build_activity(payload);
             client
                 .set_activity(activity)
-                .or(Err(AE::SettingActivityFailed))?;
+                .or(Err(RE::SettingActivityFailed))?;
             Ok(())
         } else {
-            Err(AE::DisconnectedClient)
+            Err(RE::ClientNotConnected)
         }
     }
 }
 
-async fn handle_error(sender: &mpsc::Sender<String>) {
-    let _ = sender.send("RUNTIME_ERROR".into()).await;
+async fn handle_error(sender: &mpsc::Sender<String>, error: &ActivityRuntimeError) {
+    let error_code = match error {
+        RE::ClientConnectionFailed => "CLIENT_CONNECTION_FAILED".to_owned(),
+        RE::ClientNotConnected => "CLIENT_NOT_CONNECTED".to_owned(),
+        RE::SettingActivityFailed => "SETTING_ACTIVITY_FAILED".to_owned(),
+    };
+    let _ = sender.send(error_code).await;
 }

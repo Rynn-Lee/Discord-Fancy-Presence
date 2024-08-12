@@ -1,4 +1,5 @@
-import { invoke } from "@tauri-apps/api";
+import { listen } from "@tauri-apps/api/event";
+import { invoke } from "@tauri-apps/api/tauri";
 import { ChangeEvent, PropsWithChildren, useState } from "react";
 
 // This page intended only for backend testing purposes
@@ -16,19 +17,53 @@ export default function DevView() {
 
   const handleUpdateActivityClientId = async () => {
     if (!clientId) return;
-    // try {
-    //     await invoke()
-    // }
-    console.log("handler");
+    try {
+      console.log(
+        "update_activity_client_id",
+        await invoke("update_activity_client_id", {
+          clientId,
+        }),
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleUpdateActivity = () => {
-    console.log("handler");
+  const handleUpdateActivity = async () => {
+    try {
+      console.log(
+        "update_activity",
+        await invoke("update_activity", {
+          activityPayload: {
+            details: "details",
+            state: "state",
+            largeImage: "",
+            largeText: "",
+            smallImage: "",
+            smallText: "",
+            startTimestamp: true,
+            // button1Text: "Visit this project",
+            // button1Url: "https://github.com/Rynn-Lee/Fancy-DRPC",
+            // button2Text: appInfo.button2Text ?? "",
+            // button2Url: appInfo.button2Url ?? "",
+          },
+        }),
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleListenEvent = () => {
+  const handleListenEvent = async () => {
     if (!eventName) return;
-    console.log("listen");
+    try {
+      console.log(`start listen to '${eventName}'`);
+      const handleEvent = (message: unknown) =>
+        console.log(`Event ${eventName} message: `, message);
+      await listen(eventName, handleEvent);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
