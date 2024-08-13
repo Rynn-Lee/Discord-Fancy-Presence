@@ -1,5 +1,5 @@
 import { listen } from "@tauri-apps/api/event";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import { ChangeEvent, PropsWithChildren, useState } from "react";
 
 // This page intended only for backend testing purposes

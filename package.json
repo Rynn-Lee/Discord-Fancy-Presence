@@ -1,6 +1,6 @@
 {
-  "name": "fancy-drpc",
-  "version": "0.1.1",
+  "name": "fancy-presence",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "tauri": "tauri",
@@ -10,22 +10,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.5.0",
+    "@tauri-apps/api": "^2.0.0-rc.0",
+    "@tauri-apps/plugin-shell": "^2.0.0-rc.0",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.0",
-    "styled-components": "^6.0.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.5.1",
-    "@types/crypto-js": "^4.1.2",
+    "@tauri-apps/cli": "^2.0.0-rc.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "prettier": "^3.0.3",

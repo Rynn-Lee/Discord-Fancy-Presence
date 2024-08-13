@@ -2,10 +2,13 @@
   "git.decorations.enabled": false,
   "cSpell.words": [
     "drpc",
+    "fancypresence",
     "HWND",
     "lparam",
+    "midnightdevs",
     "sysinfo",
     "thiserror",
-    "WINDOWINFO"
+    "WINDOWINFO",
+    "zustand"
   ]
 }
