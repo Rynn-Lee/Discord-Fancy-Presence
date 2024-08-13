@@ -68,7 +68,7 @@ export default function DevView() {
 
   return (
     <div>
-      <h1>Fancy DRPC Dev View</h1>
+      <h1>Fancy Presence Dev View</h1>
       <h2>Commands</h2>
       <hr />
       <div
