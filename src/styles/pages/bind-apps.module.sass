@@ -1,0 +1,41 @@
+.bind
+  padding: 0px
+  margin: 0px
+  legend
+    border: none
+  
+.processes
+  top: -5px
+  width: 700px
+  overflow-y: scroll
+  position: relative
+  display: flex
+  height: 530px
+  flex-direction: column
+
+.process
+  display: flex
+  padding: 7px 5px 7px 15px
+  border-radius: 5px
+  align-items: center
+  justify-content: flex-start
+  &>*
+    margin: 0px 5px 0px 0px
+  &:nth-child(2n)
+    background: var(--var-accent2)
+
+.top
+  width: 680px
+  display: flex
+  padding: 10px
+  flex-direction: row
+  button
+    margin-right: 5px
+  input
+    flex: 1
+
+.backgroundTask
+  display: none
+
+.note
+  margin: 5px 0px 5px 10px

@@ -1,0 +1,21 @@
+.tabPanel
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  margin: 5px 0px 10px 0px
+  .tab
+    flex: 1
+    text-align: center
+    padding: 7px
+    background: var(--var-accent2)
+    border-radius: 5px
+    margin: 0px 1px
+    cursor: pointer
+    font-size: 13px
+    transition: var(--var-transition)
+    &:hover
+      background: var(--var-accent1-hover)
+
+.active
+  background: var(--var-accent2-hover) !important
+  cursor: default !important
