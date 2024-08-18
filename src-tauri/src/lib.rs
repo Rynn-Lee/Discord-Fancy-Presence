@@ -1,9 +1,11 @@
 mod activity;
 mod error;
+mod fish;
 mod processes;
 
 use activity::{ActivityManager, ActivityPayload};
 use error::DrpcError;
+use fish::fish;
 use processes::{ProcessPayload, Processes};
 use tauri::{AppHandle, Emitter};
 
@@ -68,7 +70,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             get_processes,
             update_activity,
-            update_activity_client_id
+            update_activity_client_id,
+            fish
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
