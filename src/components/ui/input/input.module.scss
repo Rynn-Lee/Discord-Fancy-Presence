@@ -1,0 +1,17 @@
+.input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px #00000000 solid;
+  background: var(--var-accent2);
+  color: #ffffff;
+  font-family: monospace;
+  outline: none;
+  transition: 200ms;
+  &:hover {
+    background: var(--var-accent1-hover);
+  }
+  &:focus {
+    background: var(--var-accent1-hover);
+    border: 1px var(--var-link) solid;
+  }
+}

@@ -1,0 +1,20 @@
+.select {
+  appearance: none;
+  width: 100%;
+  padding: 10px 15px;
+  background: var(--var-accent2);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #ffffff;
+  outline: none;
+  transition: var(--var-transition);
+  > option {
+    padding: 10px 15px;
+    background: var(--var-accent2);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #ffffff;
+    outline: none;
+    transition: var(--var-transition);
+  }
+}
