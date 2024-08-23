@@ -1,12 +1,10 @@
-import Sidebar from "@/components/sidebar/sidebar";
+import Sidebar from "@/components/sidebar";
 
-export default function AppLayout({ children }: {children: React.ReactNode}) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{display: 'flex', flexDirection: 'row'}}>
+    <div className="fixed inset-0 flex bg-fp-primary font-mono text-white">
       <Sidebar />
-      <div className="content">
-        {children}
-      </div>
+      <div className="w-full">{children}</div>
     </div>
-  ) 
+  );
 }
